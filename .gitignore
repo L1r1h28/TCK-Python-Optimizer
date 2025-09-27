@@ -111,10 +111,18 @@ dmypy.json
 tck_core/analysis_results/
 test_reports/
 
-# IDE
-.vscode/settings.json
+# IDE and Editor files
+.vscode/
 .idea/
+
+# GitHub specific
+.github/
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+使用提示詞.md
