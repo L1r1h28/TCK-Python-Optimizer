@@ -54,28 +54,39 @@ python tck_enhanced_analyzer.py --test STRING_CONCATENATION     # 7.0x 加速
 
 ## 📁 專案結構
 
-```
 TurboCode Kit (TCK)/
-├── � tck_main.py                  # 🎯 主控制器 (完整分析流程)
-├── �📊 tck_enhanced_analyzer.py     # 🛠️ 主要測試工具 (17個測試案例)
-├── 🔧 turbo_utils.py               # 🧰 優化函數庫 (O(1) 優化函數)
-├── 📝 test_cases.py                # 🧪 測試案例定義
-├── 📚 optimization_blueprints/     # 📖 AI 協作範本 (17個 Markdown 檔案)
-│   ├── README_TCK_INDEX.md         # 總索引
-│   ├── 🏆 高效範本 (A/B+級)/       # 11個推薦範本
-│   ├── ⚠️ 需謹慎範本 (B/C級)/      # 4個條件適用範本
-│   └── 🚨 不建議範本 (C-/D級)/     # 2個失敗案例分析
-├── 🧠 tck_core/                    # 🏗️ 核心分析引擎
-│   ├── code_repository.py          # 程式碼倉庫管理
-│   ├── frequency_analyzer.py       # 頻率分析器
-│   ├── complexity_calculator.py    # 複雜度計算器
-│   ├── similarity_detector.py      # 相似度檢測器
-│   ├── report_generator.py         # 報告生成器
-│   ├── config.json                 # 配置文件
-│   ├── tck_checkpoint.json         # 檢查點檔案
-│   └── analysis_results/           # 📊 分析結果存放目錄
-└── 📋 README.md                    # 本文件
-```
+├── tck_main.py
+├── tck_enhanced_analyzer.py
+├── turbo_utils.py
+├── test_cases.py
+├── optimization_blueprints/
+│   ├── README_TCK_INDEX.md
+│   ├── 🏆 高效範本 (A/B+級)/
+│   ├── ⚠️ 需謹慎範本 (B/C級)/
+│   └── 🚨 不建議範本 (C-/D級)/
+├── tck_core/
+│   ├── code_repository.py
+│   ├── frequency_analyzer.py
+│   ├── complexity_calculator.py
+│   ├── similarity_detector.py
+│   ├── report_generator.py
+│   ├── config.json
+│   ├── tck_checkpoint.json
+│   └── analysis_results/
+└── README.md
+
+
+| 檔案/目錄 | 🎯 說明 |
+| :--- | :--- |
+| `tck_main.py` | 主控制器 (完整分析流程) |
+| `tck_enhanced_analyzer.py` | 主要測試工具 (17個測試案例) |
+| `turbo_utils.py` | 優化函數庫 (O(1) 優化函數) |
+| `test_cases.py` | 測試案例定義 |
+| `optimization_blueprints/` | AI 協作範本 (17個 Markdown 檔案) |
+| `tck_core/` | 核心分析引擎和工具 |
+
+---
+
 
 ### 🎨 優化範本分類
 
