@@ -4,12 +4,17 @@
 
 ### 步驟 1: 確保 MCP Server 運行
 
-首先啟動 MCP Server：
+首先啟動 MCP Server（會在背景運行）：
 
 ```bash
-# 在專案根目錄執行
+# 在專案根目錄執行 (推薦)
 .\start_mcp_server.bat
+
+# 或手動啟動
+python mcp_server.py
 ```
+
+**重要**: MCP Server 會在背景運行，不會阻塞您的命令行。要停止服務器，請在任務管理器中結束 Python 進程。
 
 驗證服務器運行：
 ```bash

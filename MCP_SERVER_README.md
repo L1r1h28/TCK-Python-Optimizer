@@ -5,12 +5,14 @@
 ### 1. 啟動 MCP Server
 
 ```bash
-# Windows
+# Windows (推薦 - 背景執行)
 .\start_mcp_server.bat
 
-# 或手動啟動
+# 或手動啟動 (也會背景執行)
 python mcp_server.py
 ```
+
+**注意**: Server 會在背景運行，不會阻塞命令行視窗。要停止服務器，請在任務管理器中結束 Python 進程。
 
 ### 2. 驗證服務器運行
 
