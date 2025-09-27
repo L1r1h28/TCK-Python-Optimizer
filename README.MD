@@ -44,7 +44,7 @@ python tck_enhanced_analyzer.py --test STRING_CONCATENATION     # 7.0x 加速
 | **4** | SET\_OPERATIONS | **37.7x** | B級 | 大規模集合運算 |
 | **5** | STRING\_CONCATENATION | **7.0x** | B+級 | 字串拼接優化 |
 
------
+---
 
 ## 📁 專案結構
 
@@ -80,7 +80,7 @@ TurboCode Kit (TCK)/
 | `optimization_blueprints/` | AI 協作範本 (17個 Markdown 檔案) |
 | `tck_core/` | 核心分析引擎和工具 |
 
------
+---
 
 ### 🎨 優化範本分類
 
@@ -107,7 +107,7 @@ TurboCode Kit (TCK)/
   * `dataclass_optimization.md` - B+級 | 16.7x - 大規模物件
   * `dictionary_lookup.md` - D級 | 1.0x ❌ - 反而變慢
 
------
+---
 
 ## 🔄 工作流程
 
@@ -131,7 +131,7 @@ python tck_enhanced_analyzer.py --test [優化模式名稱]
   * 與 **GitHub Copilot** 配合進行程式碼優化
   * 應用 `turbo_utils.py` 中的優化函數
 
------
+---
 
 ## 🎯 設計理念
 
@@ -164,7 +164,7 @@ TCK 專案包含多個版本的相同優化實現，是為了滿足不同學習�
   * **C級 (C/C+)**: 1-2x 加速，謹慎評估
   * **D級**: \<1x 加速，不建議使用
 
------
+---
 
 ## ⚙️ 部署指南
 
@@ -196,7 +196,7 @@ TCK 專案包含多個版本的相同優化實現，是為了滿足不同學習�
   * **PyTorch**: 2.8+ (可選，用於深度學習優化)
   * **記憶體**: 建議 8GB+ (用於大規模效能測試)
 
------
+---
 
 ## 📈 效能統計
 
@@ -214,7 +214,7 @@ TCK 專案包含多個版本的相同優化實現，是為了滿足不同學習�
   * **I/O 操作**: 磁碟讀寫效能分析
   * **執行時間**: 精確到毫秒的效能計時
 
------
+---
 
 ## 🤝 貢獻指南
 
@@ -238,13 +238,13 @@ pip install -r requirements.txt
 python tck_enhanced_analyzer.py --test ALL
 ```
 
------
+---
 
 ## 📄 授權
 
 本專案採用 **MIT 授權條款** - 詳見 **[LICENSE 文件](LICENSE.md)**
 
------
+---
 
 ## 📞 聯絡方式
 
@@ -252,6 +252,6 @@ python tck_enhanced_analyzer.py --test ALL
   * **問題回報** (Bug/建議)：[GitHub Issues](https://github.com/L1r1h28/TCK-Python-Optimizer/issues)
   * **功能請求/廣泛討論**：[GitHub Discussions](https://github.com/L1r1h28/TCK-Python-Optimizer/discussions)
 
------
+---
 
 *最後更新: 2025年9月28日 | TCK Enhanced Analyzer v2.0*
