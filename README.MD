@@ -224,16 +224,19 @@ python tck_enhanced_analyzer.py --test ALL
 
 ## 📄 授權
 
-本專案採用 MIT 授權條款 - 詳見 [LICENSE](LICENSE) 文件
+本專案採用 MIT 授權條款 - 詳見 **[LICENSE 文件](LICENSE.md)**
 
----
+
+-----
 
 ## 📞 聯絡方式
 
-* **專案維護者**: [您的名稱]
-* **問題回報**: [GitHub Issues](https://github.com/your-repo/issues)
-* **功能請求**: [GitHub Discussions](https://github.com/your-repo/discussions)
+  * **專案維護者**: **L1r1h28**
+  * **問題回報** (Bug/建議)：[GitHub Issues](https://www.google.com/search?q=https://github.com/L1r1h28/TCK-Python-Optimizer/issues)
+  * **功能請求/廣泛討論**：[GitHub Discussions](https://www.google.com/search?q=https://github.com/L1r1h28/TCK-Python-Optimizer/discussions)
 
----
+-----
 
 *最後更新: 2025年9月28日 | TCK Enhanced Analyzer v2.0*
+
+---
