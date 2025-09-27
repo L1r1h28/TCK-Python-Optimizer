@@ -1,3 +1,7 @@
+[📖 English Version](README_EN.md) | [繁體中文版](README.md)
+
+---
+
 ## 📋 專案概述
 
 TurboCode Kit (TCK) 是一個專門為 Python 開發者設計的高效能程式碼優化工具箱，通過 **17 個實測優化模式** 和 **AI 驅動的效能分析**，幫助您將最常見的效能瓶頸從線性複雜度優化為常數複雜度。
