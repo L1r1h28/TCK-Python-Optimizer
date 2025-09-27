@@ -1,0 +1,41 @@
+{
+  "global_config": {
+    "root_directory": "D:\\Projects",
+    "output_directory": "d:\\Projects\\TurboCode Kit (TCK)\\tck_core\\analysis_results",
+    "repository_file": "code_repository.json",
+    "file_extensions": [".py"],
+    "ignore_folders": ["__pycache__", ".git", "venv", ".venv", "node_modules", "dist", "build"],
+    "ignore_files": ["*test*.py", "*_test.py", "test_*.py"]
+  },
+  "frequency_settings": {
+    "min_pattern_length": 3,
+    "track_function_calls": true,
+    "track_imports": true,
+    "track_loops": true,
+    "similarity_threshold": 0.8
+  },
+  "complexity_settings": {
+    "analyze_functions": true,
+    "analyze_classes": true,
+    "track_nested_loops": true,
+    "track_recursion": true,
+    "complexity_threshold": "O(n^2)"
+  },
+  "similarity_settings": {
+    "similarity_threshold": 0.85,
+    "min_code_length": 5,
+    "ignore_comments": true,
+    "ignore_whitespace": true,
+    "detect_duplicate_functions": true,
+    "detect_similar_logic": true
+  },
+  "report_settings": {
+    "include_charts": true,
+    "max_recommendations": 20,
+    "priority_weights": {
+      "complexity": 0.4,
+      "frequency": 0.35,
+      "similarity": 0.25
+    }
+  }
+}
