@@ -1,4 +1,4 @@
-[📖 English Version](README_EN.md) | [繁體中文版](README.md)
+[📖 English Version](README_EN.md) | [繁體中文版](README.MD)
 
 ---
 
