@@ -44,7 +44,7 @@ python tck_enhanced_analyzer.py --test STRING_CONCATENATION     # 7.0x 加速
 | **4** | SET\_OPERATIONS | **37.7x** | B級 | 大規模集合運算 |
 | **5** | STRING\_CONCATENATION | **7.0x** | B+級 | 字串拼接優化 |
 
----
+-----
 
 ## 📁 專案結構
 
@@ -80,34 +80,34 @@ TurboCode Kit (TCK)/
 | `optimization_blueprints/` | AI 協作範本 (17個 Markdown 檔案) |
 | `tck_core/` | 核心分析引擎和工具 |
 
----
+-----
 
 ### 🎨 優化範本分類
 
 #### 🏆 高效範本 (A/B+級) - 強烈推薦
 
-* `O1_Memoization_via_LRU_Cache.md` - 🥇 A級 | 2803.3x - LRU 快取記憶化
-* `loop_lookup_optimization.md` - 🥇 A+級 | 221.0x - 迴圈查找加速
-* `config_cache.md` - 🥇 A級 | 28.1x - 設定快取
-* `set_operations.md` - 🥈 B級 | 37.7x - 集合運算優化
-* `string_concatenation.md` - 🥈 B+級 | 7.0x - 字串拼接
+  * `O1_Memoization_via_LRU_Cache.md` - 🥇 A級 | 2803.3x - LRU 快取記憶化
+  * `loop_lookup_optimization.md` - 🥇 A+級 | 221.0x - 迴圈查找加速
+  * `config_cache.md` - 🥇 A級 | 28.1x - 設定快取
+  * `set_operations.md` - 🥈 B級 | 37.7x - 集合運算優化
+  * `string_concatenation.md` - 🥈 B+級 | 7.0x - 字串拼接
 
 #### ⚠️ 需謹慎範本 (B/C級) - 視情況使用
 
-* `iterator_chaining.md` - B級 | 18.3x - 適用大序列合併
-* `comprehension_optimization.md` - B級 | 1.0x - 大數據集推導式
-* `frequency_optimization.md` - B級 | 2.1x - 高頻調用優化
-* `deque_operations.md` - A級 | 140.8x - 雙端佇列操作
+  * `iterator_chaining.md` - B級 | 18.3x - 適用大序列合併
+  * `comprehension_optimization.md` - B級 | 1.0x - 大數據集推導式
+  * `frequency_optimization.md` - B級 | 2.1x - 高頻調用優化
+  * `deque_operations.md` - A級 | 140.8x - 雙端佇列操作
 
 #### 🚨 不建議範本 (C-/D級) - 包含失敗案例
 
-* `memoization_injector.md` - C+級 | 11.5x - 快取效果有限
-* `python_for_loop.md` - B級 | 2.8x - 規模自適應
-* `builtin_functions.md` - B+級 | 1.9x - 數值統計
-* `dataclass_optimization.md` - B+級 | 16.7x - 大規模物件
-* `dictionary_lookup.md` - D級 | 1.0x ❌ - 反而變慢
+  * `memoization_injector.md` - C+級 | 11.5x - 快取效果有限
+  * `python_for_loop.md` - B級 | 2.8x - 規模自適應
+  * `builtin_functions.md` - B+級 | 1.9x - 數值統計
+  * `dataclass_optimization.md` - B+級 | 16.7x - 大規模物件
+  * `dictionary_lookup.md` - D級 | 1.0x ❌ - 反而變慢
 
----
+-----
 
 ## 🔄 工作流程
 
@@ -127,11 +127,11 @@ python tck_enhanced_analyzer.py --test [優化模式名稱]
 
 ### 3️⃣ AI 協作階段
 
-* 參考 `optimization_blueprints/` 中的範本
-* 與 **GitHub Copilot** 配合進行程式碼優化
-* 應用 `turbo_utils.py` 中的優化函數
+  * 參考 `optimization_blueprints/` 中的範本
+  * 與 **GitHub Copilot** 配合進行程式碼優化
+  * 應用 `turbo_utils.py` 中的優化函數
 
----
+-----
 
 ## 🎯 設計理念
 
@@ -141,30 +141,30 @@ TCK 專案包含多個版本的相同優化實現，是為了滿足不同學習�
 
 **📚 學習版本 (Blueprints)**
 
-* 詳細的理論解釋和逐步推導
-* 包含失敗案例和教訓總結
-* 適合深入理解優化原理
+  * 詳細的理論解釋和逐步推導
+  * 包含失敗案例和教訓總結
+  * 適合深入理解優化原理
 
 **🧪 測試版本 (Test Cases)**
 
-* 專注於效能驗證和基準測試
-* 大規模數據測試，確保優化效果
-* 適合驗證優化在實際場景中的表現
+  * 專注於效能驗證和基準測試
+  * 大規模數據測試，確保優化效果
+  * 適合驗證優化在實際場景中的表現
 
 **🔧 生產版本 (Turbo Utils)**
 
-* 簡潔高效的生產就緒代碼
-* 最小化依賴，最大化相容性
-* 適合直接集成到生產環境
+  * 簡潔高效的生產就緒代碼
+  * 最小化依賴，最大化相容性
+  * 適合直接集成到生產環境
 
 ### 效能評分標準
 
-* **A級 (A/A+)**: 10x+ 加速，強烈推薦
-* **B級 (B/B+)**: 2-10x 加速，視情況使用
-* **C級 (C/C+)**: 1-2x 加速，謹慎評估
-* **D級**: \<1x 加速，不建議使用
+  * **A級 (A/A+)**: 10x+ 加速，強烈推薦
+  * **B級 (B/B+)**: 2-10x 加速，視情況使用
+  * **C級 (C/C+)**: 1-2x 加速，謹慎評估
+  * **D級**: \<1x 加速，不建議使用
 
----
+-----
 
 ## ⚙️ 部署指南
 
@@ -192,29 +192,29 @@ TCK 專案包含多個版本的相同優化實現，是為了滿足不同學習�
 
 ### 環境需求
 
-* **Python**: 3.11.9+
-* **PyTorch**: 2.8+ (可選，用於深度學習優化)
-* **記憶體**: 建議 8GB+ (用於大規模效能測試)
+  * **Python**: 3.11.9+
+  * **PyTorch**: 2.8+ (可選，用於深度學習優化)
+  * **記憶體**: 建議 8GB+ (用於大規模效能測試)
 
----
+-----
 
 ## 📈 效能統計
 
 ### 總體統計
 
-* ✅ **17個實測優化模式** - 全部通過實際測試驗證
-* ✅ **平均加速倍率**: 387.6x (前5名平均)
-* ✅ **最高加速倍率**: 2803.3x (記憶化快取)
-* ✅ **測試覆蓋率**: 100% (所有模式都有實際測試數據)
+  * ✅ **17個實測優化模式** - 全部通過實際測試驗證
+  * ✅ **平均加速倍率**: 387.6x (前5名平均)
+  * ✅ **最高加速倍率**: 2803.3x (記憶化快取)
+  * ✅ **測試覆蓋率**: 100% (所有模式都有實際測試數據)
 
 ### 資源消耗監控
 
-* **CPU 使用率**: 自動監控和報告
-* **記憶體使用量**: 包含峰值和平均值統計
-* **I/O 操作**: 磁碟讀寫效能分析
-* **執行時間**: 精確到毫秒的效能計時
+  * **CPU 使用率**: 自動監控和報告
+  * **記憶體使用量**: 包含峰值和平均值統計
+  * **I/O 操作**: 磁碟讀寫效能分析
+  * **執行時間**: 精確到毫秒的效能計時
 
----
+-----
 
 ## 🤝 貢獻指南
 
@@ -238,23 +238,20 @@ pip install -r requirements.txt
 python tck_enhanced_analyzer.py --test ALL
 ```
 
----
+-----
 
 ## 📄 授權
 
 本專案採用 **MIT 授權條款** - 詳見 **[LICENSE 文件](LICENSE.md)**
 
----
+-----
 
 ## 📞 聯絡方式
 
-* **專案維護者**: **L1r1h28**
-* **問題回報** (Bug/建議)：[GitHub Issues](https://github.com/L1r1h28/TCK-Python-Optimizer/issues)
-* **功能請求/廣泛討論**：[GitHub Discussions](https://github.com/L1r1h28/TCK-Python-Optimizer/discussions)
+  * **專案維護者**: **L1r1h28**
+  * **問題回報** (Bug/建議)：[GitHub Issues](https://github.com/L1r1h28/TCK-Python-Optimizer/issues)
+  * **功能請求/廣泛討論**：[GitHub Discussions](https://github.com/L1r1h28/TCK-Python-Optimizer/discussions)
 
----
+-----
 
 *最後更新: 2025年9月28日 | TCK Enhanced Analyzer v2.0*
-
-```
-```
