@@ -86,9 +86,9 @@ TurboCode Kit (TCK)/
 
 #### 🏆 高效範本 (A/B+級) - 強烈推薦
 
-  * `O1_Memoization_via_LRU_Cache.md` - 🥇 A級 | 2803.3x - LRU 快取記憶化
-  * `loop_lookup_optimization.md` - 🥇 A+級 | 221.0x - 迴圈查找加速
-  * `config_cache.md` - 🥇 A級 | 28.1x - 設定快取
+* `O1_Memoization_via_LRU_Cache.md` - 🥇 A級 | 2803.3x - LRU 快取記憶化
+* `loop_lookup_optimization.md` - 🥇 A+級 | 221.0x - 迴圈查找加速
+* `config_cache.md` - 🥇 A級 | 28.1x - 設定快取
   * `set_operations.md` - 🥈 B級 | 37.7x - 集合運算優化
   * `string_concatenation.md` - 🥈 B+級 | 7.0x - 字串拼接
 
