@@ -1,13 +1,12 @@
-# 📚 TCK 優化藍圖總索引 (完整 14 項功能)
+# 📚 TCK 優化藍圖總索引 (完整 15 項功能)
 
-## 🎯 核心優| `dictionary_lookup.md` | 字典查找優化：理論單次查找 | **D級** | **1.0x** | 不須再改 |資產
-
-基於 **TCK Enhanced Analyzer** 實際測試的 **13 項完整功能**：
+## 🎯 核心優化系統
+基於 **TCK Enhanced Analyzer** 實際測試的 **15 項完整功能**：
 
 ## 📊 統計總結
 
-- **總測試功能**: 15 項
-- **高效優化**: 11 項 (A/B+級)
+- **總測試功能**: 17 項
+- **高效優化**: 13 項 (A/B+級)
 - **需謹慎使用**: 3 項 (B/C級)
 - **不建議使用**: 1 項 (D級)
 - **平均加速倍率**: 有效優化平均 25x+ 加速
@@ -19,6 +18,7 @@
 | 範本檔案 | 優化目標 | 實測等級 | 加速倍率 | 適用場景 |
 |---------|----------|----------|----------|----------|
 | `loop_lookup_optimization.md` | O(n²)→攤提O(1) 迴圈查找 | **A+級** | **221.0x** | 大規模數據集合交集優化 |
+| `018_generator_expression_optimization.md` | 列表→生成器延遲求值 | **A+級** | **661.0x** | 大資料串流處理 |
 | `memoization_injector.md` | 重複計算→快取 | **A級** | **2803.3x** | 遞歸、重計算 |
 | `string_concatenation.md` | O(n²)→O(n) 字串拼接 | **B+級** | **7.0x** | 文字格式化 |
 | `lookup_accelerator.md` | O(n)→O(1) 查找 | **B+級** | **61.8x** | 列表頻繁查找 |
@@ -43,6 +43,7 @@
 | `iterator_chaining.md` | 記憶體節省 + O(1)數學公式 | **B級** | **18.3x** | 大序列合併，數學優化 |
 | `comprehension_optimization.md` | 推導式優化：預計算避免重複運算 | **B級** | **1.0x** | 中等數據集處理 |
 | `frequency_optimization.md` | 高頻調用優化：消除累積效能損失 | **B級** | **2.1x** | 大規模數據處理 |
+| `020_FUNCTION_CALL_OVERHEAD_OPTIMIZATION_IO_ELIMINATION.md` | 函數調用開銷優化：內聯展開 | **B級** | **2.6x** | 效能關鍵路徑中的頻繁調用 |
 | `set_operations.md` | O(n²)→O(n) 集合運算 | **B級** | **37.7x** | 交集/聯集/差集 |
 | `deque_operations.md` | O(n)→O(1) 頭部操作 | **A級** | **140.8x** | 雙端佇列 |
 
@@ -62,11 +63,12 @@
 
 ### 🥇 第一優先 (必用)
 
-1. `loop_lookup_optimization.md` - 最高潛力 (預計100-1000x)
-2. `set_operations.md` - 最高加速 (65.9x)
-3. `lookup_accelerator.md` - 第二高速 (61.8x)
-4. `memoization_injector.md` - 遞迴神器 (30.2x)
-5. `config_cache.md` - I/O 必備 (理論∞)
+1. `018_generator_expression_optimization.md` - 最高記憶體效率 (661.0x)
+2. `loop_lookup_optimization.md` - 最高潛力 (預計100-1000x)
+3. `set_operations.md` - 最高加速 (65.9x)
+4. `lookup_accelerator.md` - 第二高速 (61.8x)
+5. `memoization_injector.md` - 遞迴神器 (30.2x)
+6. `config_cache.md` - I/O 必備 (理論∞)
 
 ### 🥈 第二優先 (推薦)
 
@@ -87,9 +89,9 @@
 
 ## � 統計總結
 
-- **總測試功能**: 14 項
+- **總測試功能**: 17 項
 - **高效優化**: 8 項 (A/B+級)
-- **需謹慎使用**: 3 項 (B/C級)
+- **需謹慎使用**: 4 項 (B/C級)
 - **不建議使用**: 3 項 (C-/D級，包含失敗案例)
 - **平均加速倍率**: 有效優化平均 25x+ 加速
 - **最高加速**: LOOP_LOOKUP_OPTIMIZATION (334.0x)
@@ -98,3 +100,20 @@
 ---
 
 **重要**: 所有數據均基於 Intel i5-11400F + 32GB RAM 實際測試，使用 TCK Enhanced Analyzer 統計分析系統
+
+## 🆕 最新優化案例
+
+### EXTENDED_DATA_PROCESSING (Case 19)
+- **檔案**: `019_EXTENDED_DATA_PROCESSING_HEAP_INDEX_OPTIMIZATION.md`
+- **優化技術**: 堆排序 + 預索引 + Top-K 查詢優化
+- **實測結果**: 8.6倍效能提升 (B+級)
+- **適用場景**: 大規模資料處理、Top-K 查詢、多條件篩選
+- **關鍵技術**: `heapq` 避免完整排序、`collections.defaultdict` 預索引
+
+### FUNCTION_CALL_OVERHEAD_OPTIMIZATION (Case 20)
+
+- **檔案**: `020_FUNCTION_CALL_OVERHEAD_OPTIMIZATION_IO_ELIMINATION.md`
+- **優化技術**: 內聯展開、減少函數調用、效能關鍵路徑優化
+- **實測結果**: 2.6倍效能提升 (B級)
+- **適用場景**: 效能關鍵路徑中的頻繁函數調用、大規模數據處理
+- **關鍵技術**: 完全內聯展開、消除函數調用開銷

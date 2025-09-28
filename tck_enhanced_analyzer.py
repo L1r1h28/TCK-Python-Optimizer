@@ -425,9 +425,10 @@ class TCKEnhancedAnalyzer:
         """驗證結果正確性"""
         if original_result is None or optimized_result is None:
             return False
-        
+
         if isinstance(original_result, list) and isinstance(optimized_result, list):
-            return len(original_result) == len(optimized_result)
+            # 檢查長度和內容是否完全相同
+            return len(original_result) == len(optimized_result) and original_result == optimized_result
         else:
             return original_result == optimized_result
     

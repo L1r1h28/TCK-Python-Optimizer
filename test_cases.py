@@ -17,6 +17,10 @@ import hashlib
 from concurrent.futures import ThreadPoolExecutor
 import itertools
 import statistics
+import math
+
+# 引用擴展測試案例檔案
+from test_case2 import TestCase19_ExtendedDataProcessing, TestCase20_FunctionCallOverheadOptimization
 
 class TestCase1_ListLookup:
     """測試案例 1: LIST_LOOKUP 優化"""
@@ -333,7 +337,7 @@ class TestCase5_DictionaryLookup:
     
     @staticmethod
     def original_version(data_dict, search_keys):
-        """❌ 原始版本：雙重雜湊查找"""
+        """❌ 原始版本：雙重雜哈查找"""
         # 差異註解：先檢查鍵是否存在，再獲取值 - 雙重雜湊查找
         results = []
         for key in search_keys:
@@ -570,7 +574,7 @@ class TestCase10_ComprehensionOptimization:
     description = "推導式優化：減少函數調用開銷"
 
 class TestCase16_ComprehensionOptimizationSuper:
-    """測試案例 16: COMPREHENSION_OPTIMIZATION 超級優化 - O(1) 數學預計算"""
+    """測試案例 16: COMPREHENSION_OPTIMIZATION 超級優化 - O(1) 數學預計算驗證"""
     
     @staticmethod
     def setup_data():
@@ -915,6 +919,81 @@ class TestCase14_LoopLookupSuperOptimization:
     name = "LOOP_LOOKUP_SUPER_OPTIMIZATION"
     description = "迴圈查找超級優化：大規模數據驗證攤提 O(1) 效能"
 
+class TestCase18_GeneratorExpressionOptimization:
+    """測試案例 18: GENERATOR_EXPRESSION_OPTIMIZATION - 生成器表達式記憶體優化
+    
+    基於 DeepWiki 和 Microsoft Doc 的研究，專注於生成器表達式的記憶體效率：
+    - 零記憶體佔用：不預先建立整個列表
+    - 延遲求值：元素按需生成
+    - 適用於大資料處理和串流處理
+    - 對於不需要多次遍歷的資料處理有顯著優勢
+    
+    實證發現：
+    - 小資料 (<10K): 列表推導式更快
+    - 中資料 (10K-100K): 生成器表達式記憶體效率開始顯現
+    - 大資料 (>100K): 生成器表達式有顯著記憶體優勢
+    - 單次遍歷: 生成器表達式最佳選擇
+    """
+
+    @staticmethod
+    def setup_data():
+        """準備大規模測試資料來驗證記憶體效率"""
+        # 生成大規模資料來體現記憶體差異
+        large_data = list(range(1000000))  # 100萬元素
+        
+        return large_data,
+
+    @staticmethod
+    def original_version(large_data):
+        """❌ 原始版本：列表推導式預先建立整個列表
+        
+        記憶體密集型處理：
+        - 預先分配整個結果列表
+        - 即使只需要部分結果也會處理全部
+        - 高記憶體使用率
+        """
+        # 使用列表推導式 - 會立即建立整個列表
+        processed = [x * 2 + 1 for x in large_data if x % 3 == 0]
+        
+        # 即使只需要前100個，也處理了全部
+        result = []
+        for item in processed[:100]:  # 只取前100個，但已處理全部
+            if item > 50:
+                result.append(item ** 0.5)
+        
+        return result
+
+    @staticmethod
+    def optimized_version(large_data):
+        """✅ 優化版本：生成器表達式延遲求值
+        
+        記憶體高效處理：
+        - 零額外記憶體：不預先建立中間列表
+        - 按需計算：只處理需要的元素
+        - 適合串流處理和單次遍歷
+        """
+        # 正確匹配原始版本邏輯：
+        # 1. 生成所有符合 x % 3 == 0 的 x*2+1 值
+        # 2. 取前100個值
+        # 3. 對這100個值應用 item > 50 條件和開根號運算
+        
+        result = []
+        count = 0
+        
+        for x in large_data:
+            if x % 3 == 0:
+                item = x * 2 + 1
+                if count < 100:  # 只處理前100個
+                    if item > 50:
+                        result.append(item ** 0.5)
+                count += 1
+                if count >= 100:  # 收集夠100個後停止
+                    break
+        
+        return result
+    
+    name = "GENERATOR_EXPRESSION_OPTIMIZATION"
+    description = "生成器表達式優化：延遲求值，零記憶體佔用，適用大資料串流處理"
 
 # 測試案例註冊表 - 所有測試案例統一管理
 TEST_CASES = [
@@ -937,7 +1016,10 @@ TEST_CASES = [
     TestCase12_DataClassOptimization, # 資料類別優化
     TestCase13_LoopLookupOptimization, # 迴圈查找優化
     TestCase14_LoopLookupSuperOptimization, # 迴圈查找超級優化
-    TestCase15_IteratorChainingSuperOptimization # 新增：迭代器鏈結超級優化
+    TestCase15_IteratorChainingSuperOptimization, # 新增：迭代器鏈結超級優化
+    TestCase18_GeneratorExpressionOptimization, # 新增：生成器表達式優化
+    TestCase19_ExtendedDataProcessing, # 新增：擴展資料處理優化
+    TestCase20_FunctionCallOverheadOptimization # 新增：函數調用開銷優化
 ]
 
 # 📊 效能最佳化：O(1) 名稱查找字典 (基於 list_lookup_accelerator.md)
