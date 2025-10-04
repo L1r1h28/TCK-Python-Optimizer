@@ -15,7 +15,7 @@ import ast
 import json
 import hashlib
 from pathlib import Path
-from typing import Dict, List, Tuple, Set, Optional, Any, Union
+from typing import Dict, List, Optional, Union
 from dataclasses import dataclass, asdict
 from collections import defaultdict
 from tqdm import tqdm
@@ -136,7 +136,7 @@ class CodeRepository:
         # 保存程式碼倉庫
         self._save_repository()
         
-        print(f"✅ 程式碼倉庫建立完成！")
+        print("✅ 程式碼倉庫建立完成！")
         print(f"   檔案數: {stats['files']}")
         print(f"   函數數: {stats.get('functions', 0)}")
         print(f"   類別數: {stats.get('classs', 0)}")

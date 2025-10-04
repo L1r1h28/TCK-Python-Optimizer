@@ -9,11 +9,10 @@ Author: TurboCode Kit (TCK)
 Version: 2.0
 """
 
-import os
 import json
 from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 
 class OptimizationReportGenerator:
@@ -319,7 +318,7 @@ quick_optimization_demo()
         
         report += f"- **可優化項目**: {total_optimizations} 個模式\n"
         report += f"- **高影響項目**: {high_impact} 個 (預期加速 >10x)\n"
-        report += f"- **預估總提升**: 20-50% 程式碼執行效能\n\n"
+        report += "- **預估總提升**: 20-50% 程式碼執行效能\n\n"
         
         report += "---\n*由 TurboCode Kit (TCK) v2.0 生成*"
         

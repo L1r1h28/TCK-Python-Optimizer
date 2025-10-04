@@ -4,7 +4,19 @@
 
 ## 📋 專案概述
 
-TurboCode Kit (TCK) 是一個專門為 Python 開發者設計的高效能程式碼優化工具箱，通過 **17 個實測優化模式** 和 **AI 驅動的效能分析**，幫助您將最常見的效能瓶頸從線性複雜度優化為常數複雜度。
+TurboC### 階段二：藍圖自動生成與歸檔
+
+系統接收到最新的測試報告後，將自動完成以下步驟：
+
+1. **數據驗證**: 解析 `test_reports/` 中最新的 JSON 報告，提取效能數據，計算加速倍數並生成評分。
+2. **模式識別**: 辨識常見的效能反模式，並定義安全的應用條件與風險。
+3. **文件生成**: 根據報告數據，在 `optimization_blueprints/` 目錄下建立或更新標準化的藍圖檔案，內容包含：
+    * 優化前的瓶頸（O(n) 程式碼結構）
+    * 採用的優化策略（O(1) 或攤提 O(1) 的設計）
+    * 效能結果摘要（加速倍率、資源變化、評分）
+    * 適用場景與風險提示
+4. **索引更新**: 將新藍圖更新至 `README_TCK_INDEX.md`，並標記其建議複雜度與優先級。
+5. **歸檔**: 僅在達到品質門檻（如預設評分和加速倍率）時，才將藍圖歸檔並標記為「已驗證」。 是一個專門為 Python 開發者設計的高效能程式碼優化工具箱，通過 **17 個實測優化模式** 和 **AI 驅動的效能分析**，幫助您將最常見的效能瓶頸從線性複雜度優化為常數複雜度。
 
 ### 🎯 核心價值
 
@@ -19,13 +31,13 @@ TurboCode Kit (TCK) 是一個專門為 Python 開發者設計的高效能程式�
 
 ### 🚀 快速開始
 
-**1. 查看所有可用測試案例：**
+#### 1. 查看所有可用測試案例
 
 ```bash
 python tck_enhanced_analyzer.py --list
-````
+```
 
-**2. 執行效能測試：**
+#### 2. 執行效能測試
 
 ```bash
 # 測試最高效的優化模式
@@ -38,102 +50,105 @@ python tck_enhanced_analyzer.py --test SET_OPERATIONS           # 37.7x 加速
 python tck_enhanced_analyzer.py --test STRING_CONCATENATION     # 7.0x 加速
 ```
 
-### 📊 最新效能排行榜 (基於實際測試)
-
-| 🏆 排名 | 優化模式 | 加速倍率 | 評分 | 適用場景 |
-| :--- | :--- | :--- | :--- | :--- |
-| **🥇** | MEMOIZATION\_CACHE | **2803.3x** | A級 | 重複計算、遞歸函數 |
-| **🥈** | LOOP\_LOOKUP\_OPTIMIZATION | **221.0x** | A+級 | 巢狀迴圈查找 |
-| **🥉** | CONFIG\_LOAD | **28.1x** | A級 | 設定檔載入快取 |
-| **4** | SET\_OPERATIONS | **37.7x** | B級 | 大規模集合運算 |
-| **5** | STRING\_CONCATENATION | **7.0x** | B+級 | 字串拼接優化 |
-
 ---
 
 ## 📁 專案結構
 
-```
+```bash
 TurboCode Kit (TCK)/
-├── tck_main.py
-├── tck_enhanced_analyzer.py
-├── turbo_utils.py
-├── test_cases.py
-├── optimization_blueprints/
-│   ├── README_TCK_INDEX.md
-│   ├── 🏆 高效範本 (A/B+級)/
-│   ├── ⚠️ 需謹慎範本 (B/C級)/
-│   └── 🚨 不建議範本 (C-/D級)/
 ├── tck_core/
-│   ├── code_repository.py
-│   ├── frequency_analyzer.py
-│   ├── complexity_calculator.py
-│   ├── similarity_detector.py
-│   ├── report_generator.py
-│   ├── config.json
-│   ├── tck_checkpoint.json
-│   └── analysis_results/
+│   ├── test_cases.py
+│   └── ... (核心分析引擎)
+├── cases/
+│   ├── case_001_...
+│   └── ... (21個獨立案例)
+├── optimization_blueprints/
+│   ├── README.md
+│   ├── README_TCK_INDEX.md
+│   └── ... (21個藍圖)
+├── tck_enhanced_analyzer.py
+├── tck_main.py
 └── README.md
 ```
 
 | 檔案/目錄 | 🎯 說明 |
 | :--- | :--- |
 | `tck_main.py` | 主控制器 (完整分析流程) |
-| `tck_enhanced_analyzer.py` | 主要測試工具 (17個測試案例) |
-| `turbo_utils.py` | 優化函數庫 (O(1) 優化函數) |
-| `test_cases.py` | 測試案例定義 |
-| `optimization_blueprints/` | AI 協作範本 (17個 Markdown 檔案) |
-| `tck_core/` | 核心分析引擎和工具 |
+| `tck_enhanced_analyzer.py` | 主要測試工具 (動態載入案例) |
+| `tck_core/` | 核心分析引擎與共用工具 |
+| `cases/` | 存放所有獨立的效能測試案例檔案 |
+| `optimization_blueprints/` | AI 協作藍圖與自動化流程說明 |
 
 ---
 
-### 🎨 優化範本分類
+## ⚙️ 自動化優化閉環流程
 
-#### 🏆 高效範本 (A/B+級) - 強烈推薦
+此流程分為「準備階段」與「系統自動執行階段」，以確保優化工作的品質與可追溯性。
 
-* `O1_Memoization_via_LRU_Cache.md` - 🥇 A級 | 2803.3x - LRU 快取記憶化
-* `loop_lookup_optimization.md` - 🥇 A+級 | 221.0x - 迴圈查找加速
-* `config_cache.md` - 🥇 A級 | 28.1x - 設定快取
-* `set_operations.md` - 🥈 B級 | 37.7x - 集合運算優化
-* `string_concatenation.md` - 🥈 B+級 | 7.0x - 字串拼接
+### 階段一：準備與數據收集
 
-#### ⚠️ 需謹慎範本 (B/C級) - 視情況使用
+1. **建立或修改案例**: 在 `cases/` 目錄下建立或修改 `case_XXX_descriptive_name.py` 檔案。
+2. **實作程式碼**: 在檔案中實作 `unoptimized_version` 和多個 `optimized_version_*` 函式。
+3. **執行分析**: 使用 `TCK Enhanced Analyzer` 執行測試，並輸出包含時間、記憶體、環境等元數據的結構化報告。
 
-* `iterator_chaining.md` - B級 | 18.3x - 適用大序列合併
-* `comprehension_optimization.md` - B級 | 1.0x - 大數據集推導式
-* `frequency_optimization.md` - B級 | 2.1x - 高頻調用優化
-* `deque_operations.md` - A級 | 140.8x - 雙端佇列操作
+    ```bash
+    # 使用 --test 參數指定案例名稱
+    python tck_enhanced_analyzer.py --test YOUR_CASE_NAME
+    ```
 
-#### 🚨 不建議範本 (C-/D級) - 包含失敗案例
+### 階段二：藍圖自動生成與歸檔
 
-* `memoization_injector.md` - C+級 | 11.5x - 快取效果有限
-* `python_for_loop.md` - B級 | 2.8x - 規模自適應
-* `builtin_functions.md` - B+級 | 1.9x - 數值統計
-* `dataclass_optimization.md` - B+級 | 16.7x - 大規模物件
-* `dictionary_lookup.md` - D級 | 1.0x ❌ - 反而變慢
+系統接收到測試報告後，將自動完成以下步驟：
+
+1. **數據驗證**: 解析報告，提取效能數據，計算加速倍數並生成評分。
+2. **模式識別**: 辨識常見的效能反模式，並定義安全的應用條件與風險。
+3. **文件生成**: 建立標準化的藍圖檔案，內容包含：
+    * 優化前的瓶頸（O(n) 程式碼結構）
+    * 採用的優化策略（O(1) 或攤提 O(1) 的設計）
+    * 效能結果摘要（加速倍率、資源變化、評分）
+    * 適用場景與風險提示
+4. **索引更新**: 將新藍圖更新至 `README_TCK_INDEX.md`，並標記其建議複雜度與優先級。
+5. **歸檔**: 僅在達到品質門檻（如預設評分和加速倍率）時，才將藍圖歸檔並標記為「已驗證」。
 
 ---
 
-## 🔄 工作流程
+## 🤖 AI 協作指令 (Copilot Automation Prompt)
 
-### 1️⃣ 效能分析階段
+此區塊為指導 AI 執行 TCK 優化週期的核心指令。
 
-```bash
-# 自動掃描程式碼，識別效能瓶頸
-python tck_main.py
-```
+### 1. 任務啟動：鎖定優化目標
 
-### 2️⃣ 優化實施階段
+* **角色**: 分析師。
+* **指令**:
 
-```bash
-# 使用 TCK Enhanced Analyzer 測試優化效果
-python tck_enhanced_analyzer.py --test [優化模式名稱]
-```
+  1. 載入並分析 `README_TCK_INDEX.md`。
+  2. 自動挑選一個「理論上可大幅強化」的案例（例如，複雜度為 O(N) 或更高，且存在 O(1) 替代方案）。
+  3. 以 `Optimization Case: [函式名稱] in [檔案路徑]` 格式回報目標。
+  4. 若無法存取索引，預設選擇 `tck_enhanced_analyzer.py` 中的慢速查找模式。
 
-### 3️⃣ AI 協作階段
+### 2. 步驟一：分析與優化
 
-* 參考 `optimization_blueprints/` 中的範本
-* 與 **GitHub Copilot** 配合進行程式碼優化
-* 應用 `turbo_utils.py` 中的優化函數
+* **指令**:
+
+  1. **深入分析**: 詳細說明目標案例的 O(N) 瓶頸，特別是重複計算或內部迴圈導致的隱性複雜度。
+  2. **外部研究**: 使用 MCP/DeepWiki 搜尋 O(1) 替代方案，例如 `Set/Dict` 或 `@lru_cache`。
+  3. **實作優化**: 根據研究結果，將目標函式的時間複雜度強制轉換為 O(1) 或攤提 O(1)，並僅在 `tck_enhanced_analyzer.py` 或 `test_cases.py` 中修改。
+
+### 3. 步驟二：測試與驗證
+
+* **指令**:
+
+  1. **設計測試**: 在對應的 `case_XXX` 檔案中建立或修改測試案例，使用大規模數據（N > 10^5）以驗證效能提升。
+  2. **結果驗證**: 證明優化前後存在「數量級」的效能差異。
+  3. **清理**: 任務完成後，立即刪除所有臨時檔案。
+
+### 4. 步驟三：歸檔與報告
+
+* **指令**:
+
+  1. **生成報告**: 使用 Markdown 格式展示「優化前範本」、「優化後範本」與「效能提升總結」。
+  2. **更新藍圖**: 更新 `optimization_blueprints` 中的對應藍圖範本。
+  3. **更新索引**: 在 `README_TCK_INDEX.md` 中更新目標案例的評分與優先級。
 
 ---
 
@@ -143,80 +158,34 @@ python tck_enhanced_analyzer.py --test [優化模式名稱]
 
 TCK 專案包含多個版本的相同優化實現，是為了滿足不同學習階段和使用場景的需求：
 
-**📚 學習版本 (Blueprints)**
+#### 📚 學習版本 (Blueprints)
 
 * 詳細的理論解釋和逐步推導
 * 包含失敗案例和教訓總結
 * 適合深入理解優化原理
 
-**🧪 測試版本 (Test Cases)**
+#### 🧪 測試版本 (Test Cases)
 
 * 專注於效能驗證和基準測試
 * 大規模數據測試，確保優化效果
 * 適合驗證優化在實際場景中的表現
 
-**🔧 生產版本 (Turbo Utils)**
+#### 🔧 生產版本 (Turbo Utils)
 
 * 簡潔高效的生產就緒代碼
 * 最小化依賴，最大化相容性
 * 適合直接集成到生產環境
 
-### 效能評分標準
-
-* **A級 (A/A+)**: 10x+ 加速，強烈推薦
-* **B級 (B/B+)**: 2-10x 加速，視情況使用
-* **C級 (C/C+)**: 1-2x 加速，謹慎評估
-* **D級**: \<1x 加速，不建議使用
-
 ---
 
-## ⚙️ 部署指南
+## 🔧 測試環境
 
-### 快速部署到新專案
+所有藍圖的效能數據均基於以下環境的 `TCK Enhanced Analyzer` 實際測試：
 
-1.  **克隆優化範本庫：**
-
-    ```bash
-    git clone [TCK-repository-url]
-    cp -r optimization_blueprints/ [your-project]/
-    ```
-
-2.  **安裝依賴：**
-
-    ```bash
-    pip install functools  # (通常已預裝)
-    ```
-
-3.  **開始優化：**
-
-    ```bash
-    # 向 Copilot 發出指令
-    "使用 TCK 優化範本優化此程式碼的效能"
-    ```
-
-### 環境需求
-
-* **Python**: 3.11.9+
-* **PyTorch**: 2.8+ (可選，用於深度學習優化)
-* **記憶體**: 建議 8GB+ (用於大規模效能測試)
-
----
-
-## 📈 效能統計
-
-### 總體統計
-
-* ✅ **17個實測優化模式** - 全部通過實際測試驗證
-* ✅ **平均加速倍率**: 387.6x (前5名平均)
-* ✅ **最高加速倍率**: 2803.3x (記憶化快取)
-* ✅ **測試覆蓋率**: 100% (所有模式都有實際測試數據)
-
-### 資源消耗監控
-
-* **CPU 使用率**: 自動監控和報告
-* **記憶體使用量**: 包含峰值和平均值統計
-* **I/O 操作**: 磁碟讀寫效能分析
-* **執行時間**: 精確到毫秒的效能計時
+* **硬體**: Intel i5-11400F + RTX 2060 Super + 32GB RAM
+* **系統**: Windows 11
+* **軟體**: Python 3.11.9
+* **方法**: 每個案例執行 1000+ 次以進行統計分析。
 
 ---
 
@@ -237,9 +206,9 @@ pip install -r requirements.txt
 ### 測試新優化模式
 
 ```bash
-# 添加新的測試案例到 test_cases.py
-# 運行完整測試套件
-python tck_enhanced_analyzer.py --test ALL
+# 在 cases/ 目錄下建立新的 case_XXX.py 檔案
+# 運行你的新案例
+python tck_enhanced_analyzer.py --test YOUR_CASE_NAME
 ```
 
 ---
@@ -258,4 +227,4 @@ python tck_enhanced_analyzer.py --test ALL
 
 ---
 
-*最後更新: 2025年9月28日 | TCK Enhanced Analyzer v2.0*
+最後更新: 2025年10月5日 | TCK Enhanced Analyzer v3.1
