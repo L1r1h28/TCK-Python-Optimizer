@@ -57,7 +57,6 @@ def load_existing_blocks():
         print(f"Error loading code blocks: {e}")
         return []
 
-from tqdm import tqdm
 
 # 導入各個分析模組
 try:
@@ -257,7 +256,6 @@ class TCKController:
             
             # 執行相似度分析 (使用 test_similarity.py 的邏輯)
             from tck_core.similarity_detector import SimilarityDetector
-            from simhash import Simhash
             import hashlib
             
             print("Generating SimHash fingerprints for code blocks...")
@@ -302,7 +300,7 @@ class TCKController:
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(summary, f, ensure_ascii=False, indent=2)
             
-            print(f"SimHash similarity detection completed")
+            print("SimHash similarity detection completed")
             print(f"   - Exact duplicate groups: {summary['optimization_summary']['duplicate_groups']}")
             print(f"   - Similar code groups: {summary['optimization_summary']['similar_groups']}")
             print(f"   - Potential line savings: {summary['optimization_summary']['total_potential_savings']}")

@@ -1,0 +1,1555 @@
+{
+  "summary": {
+    "total_files": 6,
+    "total_lines": 4549,
+    "average_complexity": 95.83,
+    "dependency_issues": 5,
+    "duplicate_functions": 2,
+    "duplicate_classes": 0
+  },
+  "file_analyses": {
+    "mcp_server.py": {
+      "file_path": "mcp_server.py",
+      "lines_of_code": 218,
+      "classes": [
+        {
+          "name": "OptimizationLevel",
+          "methods": [],
+          "line_start": 30,
+          "docstring": ""
+        },
+        {
+          "name": "OptimizationPattern",
+          "methods": [],
+          "line_start": 39,
+          "docstring": "優化模式資料結構"
+        },
+        {
+          "name": "QueryRequest",
+          "methods": [],
+          "line_start": 53,
+          "docstring": "查詢請求結構"
+        },
+        {
+          "name": "QueryResponse",
+          "methods": [],
+          "line_start": 60,
+          "docstring": "查詢回應結構"
+        },
+        {
+          "name": "TCKMCPServer",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 70,
+              "args_count": 1
+            },
+            {
+              "name": "_build_optimization_index",
+              "line_start": 79,
+              "args_count": 1
+            },
+            {
+              "name": "query_optimization",
+              "line_start": 136,
+              "args_count": 3
+            },
+            {
+              "name": "_setup_routes",
+              "line_start": 169,
+              "args_count": 1
+            }
+          ],
+          "line_start": 67,
+          "docstring": "TCK MCP Server 主類"
+        }
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line_start": 198,
+          "args_count": 0,
+          "docstring": "啟動 MCP Server"
+        }
+      ],
+      "imports": {
+        "standard_library": [
+          "json",
+          "re",
+          "typing",
+          "os",
+          "sys"
+        ],
+        "third_party": [
+          "fastapi",
+          "pydantic",
+          "enum",
+          "uvicorn"
+        ],
+        "local_imports": [
+          "test_cases",
+          "turbo_utils"
+        ],
+        "relative_imports": []
+      },
+      "complexity_score": 58
+    },
+    "tck_enhanced_analyzer.py": {
+      "file_path": "tck_enhanced_analyzer.py",
+      "lines_of_code": 636,
+      "classes": [
+        {
+          "name": "TCKEnhancedAnalyzer",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 41,
+              "args_count": 2
+            },
+            {
+              "name": "load_test_cases",
+              "line_start": 48,
+              "args_count": 1
+            },
+            {
+              "name": "_get_comprehensive_system_stats",
+              "line_start": 65,
+              "args_count": 1
+            },
+            {
+              "name": "measure_comprehensive_performance",
+              "line_start": 145,
+              "args_count": 2
+            },
+            {
+              "name": "run_test_case",
+              "line_start": 195,
+              "args_count": 2
+            },
+            {
+              "name": "_safe_divide",
+              "line_start": 334,
+              "args_count": 4
+            },
+            {
+              "name": "_calculate_performance_score",
+              "line_start": 341,
+              "args_count": 2
+            },
+            {
+              "name": "_get_performance_grade",
+              "line_start": 407,
+              "args_count": 2
+            },
+            {
+              "name": "_verify_correctness",
+              "line_start": 424,
+              "args_count": 3
+            },
+            {
+              "name": "generate_detailed_report",
+              "line_start": 435,
+              "args_count": 2
+            },
+            {
+              "name": "list_tests",
+              "line_start": 491,
+              "args_count": 1
+            },
+            {
+              "name": "run_all_tests",
+              "line_start": 501,
+              "args_count": 1
+            },
+            {
+              "name": "generate_summary_report",
+              "line_start": 518,
+              "args_count": 2
+            },
+            {
+              "name": "run_specific_test",
+              "line_start": 574,
+              "args_count": 2
+            }
+          ],
+          "line_start": 38,
+          "docstring": "TCK 增強統計分析器 - 包含完整的系統資源監控"
+        }
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line_start": 592,
+          "args_count": 0,
+          "docstring": "主程式"
+        }
+      ],
+      "imports": {
+        "standard_library": [
+          "time",
+          "json",
+          "importlib.util",
+          "sys",
+          "os",
+          "pathlib",
+          "typing",
+          "collections"
+        ],
+        "third_party": [
+          "argparse",
+          "gc",
+          "platform",
+          "psutil",
+          "GPUtil",
+          "threading",
+          "glob",
+          "shutil"
+        ],
+        "local_imports": [],
+        "relative_imports": []
+      },
+      "complexity_score": 73
+    },
+    "tck_main.py": {
+      "file_path": "tck_main.py",
+      "lines_of_code": 379,
+      "classes": [
+        {
+          "name": "TCKController",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 76,
+              "args_count": 2
+            },
+            {
+              "name": "_load_checkpoint",
+              "line_start": 83,
+              "args_count": 1
+            },
+            {
+              "name": "_save_checkpoint",
+              "line_start": 96,
+              "args_count": 3
+            },
+            {
+              "name": "_get_config_hash",
+              "line_start": 111,
+              "args_count": 1
+            },
+            {
+              "name": "_is_step_completed",
+              "line_start": 121,
+              "args_count": 3
+            },
+            {
+              "name": "run_full_analysis",
+              "line_start": 138,
+              "args_count": 2
+            },
+            {
+              "name": "_run_repository_setup",
+              "line_start": 181,
+              "args_count": 1
+            },
+            {
+              "name": "_should_rescan",
+              "line_start": 199,
+              "args_count": 1
+            },
+            {
+              "name": "_run_frequency_analysis",
+              "line_start": 228,
+              "args_count": 1
+            },
+            {
+              "name": "_run_complexity_analysis",
+              "line_start": 238,
+              "args_count": 1
+            },
+            {
+              "name": "_run_similarity_analysis",
+              "line_start": 248,
+              "args_count": 1
+            },
+            {
+              "name": "_run_report_generation",
+              "line_start": 313,
+              "args_count": 1
+            },
+            {
+              "name": "_show_completion_summary",
+              "line_start": 322,
+              "args_count": 1
+            }
+          ],
+          "line_start": 73,
+          "docstring": "TurboCode Kit 主控制器"
+        }
+      ],
+      "functions": [
+        {
+          "name": "load_existing_blocks",
+          "line_start": 27,
+          "args_count": 0,
+          "docstring": "從 code_repository.json 載入現有程式碼塊"
+        },
+        {
+          "name": "main",
+          "line_start": 344,
+          "args_count": 0,
+          "docstring": "主程式入口"
+        }
+      ],
+      "imports": {
+        "standard_library": [
+          "os",
+          "sys",
+          "time",
+          "json",
+          "datetime",
+          "pathlib"
+        ],
+        "third_party": [
+          "hashlib",
+          "tck_core.code_repository",
+          "tck_core.frequency_analyzer",
+          "tck_core.complexity_calculator",
+          "tck_core.report_generator",
+          "tck_core.similarity_detector",
+          "hashlib"
+        ],
+        "local_imports": [
+          "turbo_utils"
+        ],
+        "relative_imports": []
+      },
+      "complexity_score": 43
+    },
+    "test_case2.py": {
+      "file_path": "test_case2.py",
+      "lines_of_code": 319,
+      "classes": [
+        {
+          "name": "TestCase19_ExtendedDataProcessing",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 42,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 73,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 137,
+              "args_count": 2
+            }
+          ],
+          "line_start": 25,
+          "docstring": "測試案例 19: EXTENDED_DATA_PROCESSING - 擴展資料處理優化\n\n基於 DeepWiki 和 Microsoft Doc 的研究，專注於複雜資料處理的效能優化：\n- 大規模資料轉換和過濾\n- 多重條件處理和聚合\n- 記憶體使用優化\n- 演算法複雜度改進\n\n實證發現：\n- 資料量越大，優化效果越明顯\n- 多重條件處理是效能瓶頸的主要來源\n- 適當的資料結構選擇能帶來數量級提升\n- 向量化操作在數值處理中特別有效"
+        },
+        {
+          "name": "TestCase20_FunctionCallOverheadOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 216,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 227,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 283,
+              "args_count": 1
+            }
+          ],
+          "line_start": 198,
+          "docstring": "測試案例 20: FUNCTION_CALL_OVERHEAD_OPTIMIZATION - 函數調用開銷優化\n\n基於 Microsoft Doc 和 DeepWiki 的研究，專注於 Python 函數調用開銷的效能影響：\n- 頻繁函數調用的效能成本\n- 內聯展開 vs 函數調用的權衡\n- 迴圈中的函數調用開銷\n- 減少函數調用次數的優化策略\n\n實證發現（基於網路搜索研究）：\n- Python 3.11+ 已大幅優化函數調用（內聯、專門化）\n- 極端頻繁調用仍會產生顯著開銷\n- 函數調用開銷約為幾十個CPU週期\n- 在效能關鍵路徑中應避免不必要的函數調用\n- 現代Python的函數調用優化使簡單案例改善有限"
+        }
+      ],
+      "functions": [],
+      "imports": {
+        "standard_library": [
+          "json",
+          "time",
+          "os",
+          "collections",
+          "typing"
+        ],
+        "third_party": [
+          "random",
+          "numpy",
+          "tempfile",
+          "functools",
+          "hashlib",
+          "concurrent.futures",
+          "itertools",
+          "statistics",
+          "math",
+          "heapq"
+        ],
+        "local_imports": [
+          "turbo_utils"
+        ],
+        "relative_imports": []
+      },
+      "complexity_score": 46
+    },
+    "test_cases.py": {
+      "file_path": "test_cases.py",
+      "lines_of_code": 1029,
+      "classes": [
+        {
+          "name": "TestCase1_ListLookup",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 29,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 36,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 46,
+              "args_count": 2
+            }
+          ],
+          "line_start": 25,
+          "docstring": "測試案例 1: LIST_LOOKUP 優化"
+        },
+        {
+          "name": "TestCase2_ForLoopVectorization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 74,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 86,
+              "args_count": 3
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 120,
+              "args_count": 3
+            }
+          ],
+          "line_start": 59,
+          "docstring": "測試案例 2: PYTHON_FOR_LOOP 進階向量化優化\n\n基於 DeepWiki 和 Microsoft Doc 的研究，專注於迴圈優化的真正效能瓶頸：\n- 傳統 for 迴圈 vs NumPy 向量化 vs 列表推導式\n- 數值運算密集型任務的最佳化策略\n- 不同資料規模下的效能轉折點分析\n\n實證發現：\n- 小資料 (<1K): 列表推導式最快\n- 中資料 (1K-10K): NumPy 向量化優勢顯現\n- 大資料 (>10K): NumPy 向量化有顯著優勢"
+        },
+        {
+          "name": "TestCase17_HighFreqCallsOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 191,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 199,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 218,
+              "args_count": 2
+            }
+          ],
+          "line_start": 187,
+          "docstring": "測試案例 17: HIGH_FREQ_CALLS 高頻調用優化"
+        },
+        {
+          "name": "TestCase3_ConfigCache",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 250,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 259,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 271,
+              "args_count": 2
+            },
+            {
+              "name": "cleanup_data",
+              "line_start": 281,
+              "args_count": 2
+            }
+          ],
+          "line_start": 246,
+          "docstring": "測試案例 3: CONFIG_LOAD 快取優化"
+        },
+        {
+          "name": "TestCase4_StringConcatenation",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 293,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 301,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 310,
+              "args_count": 1
+            }
+          ],
+          "line_start": 289,
+          "docstring": "測試案例 4: STRING_CONCATENATION 優化"
+        },
+        {
+          "name": "TestCase5_DictionaryLookup",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 322,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 339,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 349,
+              "args_count": 2
+            }
+          ],
+          "line_start": 318,
+          "docstring": "測試案例 5: DICTIONARY_LOOKUP 優化"
+        },
+        {
+          "name": "TestCase6_SetOperations",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 362,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 370,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 377,
+              "args_count": 2
+            }
+          ],
+          "line_start": 358,
+          "docstring": "測試案例 6: SET_OPERATIONS 優化"
+        },
+        {
+          "name": "TestCase7_DequeOperations",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 390,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 396,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 405,
+              "args_count": 1
+            }
+          ],
+          "line_start": 386,
+          "docstring": "測試案例 7: DEQUE_OPERATIONS 優化"
+        },
+        {
+          "name": "TestCase8_MemorizationCache",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 421,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 429,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 444,
+              "args_count": 1
+            }
+          ],
+          "line_start": 417,
+          "docstring": "測試案例 8: MEMOIZATION_CACHE 優化 - O(1) 攤提複雜度"
+        },
+        {
+          "name": "TestCase9_BuiltinFunctions",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 466,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 472,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 492,
+              "args_count": 1
+            }
+          ],
+          "line_start": 462,
+          "docstring": "測試案例 9: BUILTIN_FUNCTIONS 優化"
+        },
+        {
+          "name": "TestCase10_ComprehensionOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 509,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 516,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 531,
+              "args_count": 1
+            }
+          ],
+          "line_start": 505,
+          "docstring": "測試案例 10: COMPREHENSION_OPTIMIZATION 優化"
+        },
+        {
+          "name": "TestCase16_ComprehensionOptimizationSuper",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 580,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 587,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 600,
+              "args_count": 1
+            }
+          ],
+          "line_start": 576,
+          "docstring": "測試案例 16: COMPREHENSION_OPTIMIZATION 超級優化 - O(1) 數學預計算驗證"
+        },
+        {
+          "name": "TestCase11_IteratorChaining",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 617,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 627,
+              "args_count": 3
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 638,
+              "args_count": 3
+            }
+          ],
+          "line_start": 613,
+          "docstring": "測試案例 11: ITERATOR_CHAINING 優化"
+        },
+        {
+          "name": "TestCase15_IteratorChainingSuperOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 677,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 687,
+              "args_count": 3
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 697,
+              "args_count": 3
+            }
+          ],
+          "line_start": 673,
+          "docstring": "測試案例 15: ITERATOR_CHAINING 超級優化 - 純O(1) 數學公式驗證"
+        },
+        {
+          "name": "TestCase12_DataClassOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 740,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 749,
+              "args_count": 2
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 817,
+              "args_count": 2
+            }
+          ],
+          "line_start": 725,
+          "docstring": "測試案例 12: DATACLASS_OPTIMIZATION 進階優化\n\n基於 DeepWiki 研究和實證測試，證實 slots 的真正效能優勢：\n- 記憶體節省：slots 版本比傳統類別節省 2.5MB (10萬物件)\n- 屬性訪問速度：slots 版本比傳統類別快 14.3%\n- 自動方法生成：減少樣板程式碼，提高開發效率\n\n測試策略：\n- 使用大規模物件測試記憶體效率\n- 測試屬性訪問效能差異\n- 展示 dataclass 的開發者體驗優勢"
+        },
+        {
+          "name": "TestCase13_LoopLookupOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 848,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 859,
+              "args_count": 3
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 873,
+              "args_count": 3
+            }
+          ],
+          "line_start": 844,
+          "docstring": "測試案例 13: LOOP_LOOKUP 優化 - 巢狀迴圈中的列表查找 O(N²) → O(N)"
+        },
+        {
+          "name": "TestCase14_LoopLookupSuperOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 891,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 905,
+              "args_count": 3
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 914,
+              "args_count": 3
+            }
+          ],
+          "line_start": 887,
+          "docstring": "測試案例 14: LOOP_LOOKUP 超級優化 - 大規模數據驗證攤提 O(1)"
+        },
+        {
+          "name": "TestCase18_GeneratorExpressionOptimization",
+          "methods": [
+            {
+              "name": "setup_data",
+              "line_start": 939,
+              "args_count": 0
+            },
+            {
+              "name": "original_version",
+              "line_start": 947,
+              "args_count": 1
+            },
+            {
+              "name": "optimized_version",
+              "line_start": 967,
+              "args_count": 1
+            }
+          ],
+          "line_start": 922,
+          "docstring": "測試案例 18: GENERATOR_EXPRESSION_OPTIMIZATION - 生成器表達式記憶體優化\n\n基於 DeepWiki 和 Microsoft Doc 的研究，專注於生成器表達式的記憶體效率：\n- 零記憶體佔用：不預先建立整個列表\n- 延遲求值：元素按需生成\n- 適用於大資料處理和串流處理\n- 對於不需要多次遍歷的資料處理有顯著優勢\n\n實證發現：\n- 小資料 (<10K): 列表推導式更快\n- 中資料 (10K-100K): 生成器表達式記憶體效率開始顯現\n- 大資料 (>100K): 生成器表達式有顯著記憶體優勢\n- 單次遍歷: 生成器表達式最佳選擇"
+        },
+        {
+          "name": "BasePerson",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 759,
+              "args_count": 4
+            },
+            {
+              "name": "name",
+              "line_start": 765,
+              "args_count": 1
+            },
+            {
+              "name": "age",
+              "line_start": 769,
+              "args_count": 1
+            },
+            {
+              "name": "email",
+              "line_start": 773,
+              "args_count": 1
+            }
+          ],
+          "line_start": 758,
+          "docstring": ""
+        },
+        {
+          "name": "PersonSlow",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 777,
+              "args_count": 4
+            },
+            {
+              "name": "get_age",
+              "line_start": 781,
+              "args_count": 1
+            },
+            {
+              "name": "validate",
+              "line_start": 788,
+              "args_count": 1
+            }
+          ],
+          "line_start": 776,
+          "docstring": ""
+        }
+      ],
+      "functions": [],
+      "imports": {
+        "standard_library": [
+          "json",
+          "time",
+          "os",
+          "collections",
+          "typing",
+          "collections"
+        ],
+        "third_party": [
+          "random",
+          "numpy",
+          "tempfile",
+          "functools",
+          "hashlib",
+          "concurrent.futures",
+          "itertools",
+          "statistics",
+          "math",
+          "numpy",
+          "numpy",
+          "numpy"
+        ],
+        "local_imports": [
+          "turbo_utils",
+          "test_case2"
+        ],
+        "relative_imports": []
+      },
+      "complexity_score": 170
+    },
+    "turbo_utils.py": {
+      "file_path": "turbo_utils.py",
+      "lines_of_code": 1968,
+      "classes": [
+        {
+          "name": "ListLookupOptimizer",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 31,
+              "args_count": 2
+            },
+            {
+              "name": "contains",
+              "line_start": 36,
+              "args_count": 2
+            },
+            {
+              "name": "add",
+              "line_start": 40,
+              "args_count": 2
+            },
+            {
+              "name": "remove",
+              "line_start": 46,
+              "args_count": 2
+            },
+            {
+              "name": "from_frequent_lookups",
+              "line_start": 53,
+              "args_count": 2
+            }
+          ],
+          "line_start": 21,
+          "docstring": "清單查找優化器 - 將 O(n) 查找優化為 O(1)\n\n使用場景：\n- 頻繁的 'item in list' 操作\n- 重複的清單搜尋\n- 大型清單的成員測試"
+        },
+        {
+          "name": "ConfigCacheManager",
+          "methods": [
+            {
+              "name": "load_config",
+              "line_start": 73,
+              "args_count": 3
+            },
+            {
+              "name": "_load_file_direct",
+              "line_start": 98,
+              "args_count": 2
+            },
+            {
+              "name": "_is_file_updated",
+              "line_start": 108,
+              "args_count": 2
+            },
+            {
+              "name": "clear_cache",
+              "line_start": 119,
+              "args_count": 1
+            }
+          ],
+          "line_start": 58,
+          "docstring": "設定檔快取管理器 - 將重複載入優化為記憶體快取\n\n使用場景：\n- 頻繁的設定檔讀取\n- JSON/YAML 檔案重複載入\n- 設定參數的重複存取"
+        },
+        {
+          "name": "VectorizationAccelerator",
+          "methods": [
+            {
+              "name": "replace_numeric_loop",
+              "line_start": 156,
+              "args_count": 2
+            },
+            {
+              "name": "batch_condition_filter",
+              "line_start": 176,
+              "args_count": 2
+            }
+          ],
+          "line_start": 126,
+          "docstring": "向量化加速器 - 將 Python 迴圈優化為 NumPy 向量操作\n\n使用場景：\n- 大量數值計算的 for 迴圈\n- 清單推導式的數值操作\n- 重複的數學運算"
+        },
+        {
+          "name": "MemoizationInjector",
+          "methods": [
+            {
+              "name": "cached_function",
+              "line_start": 208,
+              "args_count": 1
+            },
+            {
+              "name": "smart_cache_decorator",
+              "line_start": 223,
+              "args_count": 1
+            }
+          ],
+          "line_start": 197,
+          "docstring": "記憶化注入器 - 自動快取昂貴函數結果\n\n使用場景：\n- 重複執行的昂貴計算\n- 相同參數的函數調用\n- 遞迴函數優化"
+        },
+        {
+          "name": "OptimizationBlueprintGenerator",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 260,
+              "args_count": 2
+            },
+            {
+              "name": "generate_list_lookup_blueprint",
+              "line_start": 265,
+              "args_count": 1
+            },
+            {
+              "name": "generate_config_cache_blueprint",
+              "line_start": 280,
+              "args_count": 1
+            },
+            {
+              "name": "generate_vectorization_blueprint",
+              "line_start": 293,
+              "args_count": 1
+            },
+            {
+              "name": "create_optimization_blueprints_folder",
+              "line_start": 307,
+              "args_count": 2
+            }
+          ],
+          "line_start": 253,
+          "docstring": "優化藍圖生成器 - 自動生成優化建議\n\n基於頻率分析結果，生成具體的優化程式碼範本"
+        },
+        {
+          "name": "StringConcatenationOptimizer",
+          "methods": [
+            {
+              "name": "join_strings",
+              "line_start": 391,
+              "args_count": 2
+            },
+            {
+              "name": "build_string_efficiently",
+              "line_start": 405,
+              "args_count": 2
+            }
+          ],
+          "line_start": 380,
+          "docstring": "字串拼接優化器 - 將 O(n²) 字串累加優化為 O(n) join 操作\n\n使用場景：\n- 大量字串的累加拼接\n- for 迴圈中的字串連接\n- 動態字串建構"
+        },
+        {
+          "name": "DictionaryLookupOptimizer",
+          "methods": [
+            {
+              "name": "single_lookup_get",
+              "line_start": 430,
+              "args_count": 2
+            },
+            {
+              "name": "batch_lookup_with_defaults",
+              "line_start": 444,
+              "args_count": 3
+            }
+          ],
+          "line_start": 419,
+          "docstring": "字典查找優化器 - 將雙重查找優化為單次查找\n\n使用場景：\n- 條件檢查後的字典存取\n- 大規模字典查找操作\n- 頻繁的鍵存在性檢查"
+        },
+        {
+          "name": "SetOperationsOptimizer",
+          "methods": [
+            {
+              "name": "fast_membership_test",
+              "line_start": 470,
+              "args_count": 2
+            },
+            {
+              "name": "intersection_multiple_sets",
+              "line_start": 484,
+              "args_count": 0
+            }
+          ],
+          "line_start": 459,
+          "docstring": "集合操作優化器 - 將線性查找優化為集合操作\n\n使用場景：\n- 大規模的包含性檢查\n- 多個列表的交集/聯集操作\n- 頻繁的重複項目檢查"
+        },
+        {
+          "name": "DequeOperationsOptimizer",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 512,
+              "args_count": 1
+            },
+            {
+              "name": "append_left_optimized",
+              "line_start": 515,
+              "args_count": 2
+            },
+            {
+              "name": "pop_left_optimized",
+              "line_start": 519,
+              "args_count": 1
+            },
+            {
+              "name": "bulk_operations",
+              "line_start": 523,
+              "args_count": 2
+            }
+          ],
+          "line_start": 502,
+          "docstring": "雙端隊列操作優化器 - 優化列表的雙端操作\n\n使用場景：\n- 頻繁的列表頭部插入/刪除\n- 隊列/棧操作\n- 大量 pop(0) 操作"
+        },
+        {
+          "name": "BuiltinFunctionsOptimizer",
+          "methods": [
+            {
+              "name": "cached_len_operations",
+              "line_start": 558,
+              "args_count": 1
+            },
+            {
+              "name": "batch_type_conversion",
+              "line_start": 571,
+              "args_count": 2
+            }
+          ],
+          "line_start": 542,
+          "docstring": "內建函數優化器 - 優化內建函數的使用\n\n使用場景：\n- 大量使用 len(), str(), int() 等內建函數\n- 頻繁的類型轉換\n- 內建函數的快取優化"
+        },
+        {
+          "name": "ComprehensionOptimizer",
+          "methods": [
+            {
+              "name": "optimize_list_comprehension",
+              "line_start": 596,
+              "args_count": 2
+            },
+            {
+              "name": "dict_comprehension_from_pairs",
+              "line_start": 616,
+              "args_count": 1
+            }
+          ],
+          "line_start": 585,
+          "docstring": "推導式優化器 - 優化列表/字典/集合推導式\n\n使用場景：\n- 複雜的推導式運算\n- 多重條件過濾\n- 嵌套推導式"
+        },
+        {
+          "name": "IteratorChainingOptimizer",
+          "methods": [
+            {
+              "name": "chain_multiple_iterables",
+              "line_start": 640,
+              "args_count": 0
+            },
+            {
+              "name": "filter_chain",
+              "line_start": 654,
+              "args_count": 1
+            }
+          ],
+          "line_start": 629,
+          "docstring": "迭代器鏈優化器 - 優化多重迭代器操作\n\n使用場景：\n- 多個 itertools 鏈操作\n- 複雜的迭代器管道\n- 大量資料的流式處理"
+        },
+        {
+          "name": "DataClassOptimizer",
+          "methods": [
+            {
+              "name": "create_dataclass_efficiently",
+              "line_start": 682,
+              "args_count": 2
+            },
+            {
+              "name": "dataclass_to_dict_batch",
+              "line_start": 696,
+              "args_count": 1
+            }
+          ],
+          "line_start": 671,
+          "docstring": "資料類優化器 - 優化資料類的使用\n\n使用場景：\n- 大量資料類實例的創建\n- 資料類的序列化/反序列化\n- 資料類的比較和雜湊操作"
+        },
+        {
+          "name": "FunctionCallOverheadOptimizer",
+          "methods": [
+            {
+              "name": "inline_arithmetic_chain",
+              "line_start": 726,
+              "args_count": 2
+            },
+            {
+              "name": "inline_condition_checks",
+              "line_start": 770,
+              "args_count": 2
+            },
+            {
+              "name": "create_inline_processor",
+              "line_start": 817,
+              "args_count": 1
+            },
+            {
+              "name": "optimize_function_calls_in_loop",
+              "line_start": 855,
+              "args_count": 2
+            }
+          ],
+          "line_start": 709,
+          "docstring": "函數調用開銷優化器 - 內聯展開和減少函數調用\n\n使用場景：\n- 效能關鍵路徑中的頻繁函數調用\n- 緊密迴圈中的多重條件檢查\n- 大規模數據處理中的簡單運算鏈\n- 需要消除函數調用開銷的場景\n\n基於 FUNCTION_CALL_OVERHEAD_OPTIMIZATION 藍圖研究：\n- Python 3.11+ 已優化簡單函數調用\n- 極端頻繁調用仍會累積顯著開銷\n- 內聯展開能帶來2-3倍效能改善"
+        },
+        {
+          "name": "GeneratorExpressionOptimizer",
+          "methods": [
+            {
+              "name": "convert_listcomp_to_genexpr",
+              "line_start": 899,
+              "args_count": 3
+            },
+            {
+              "name": "process_with_limit",
+              "line_start": 927,
+              "args_count": 4
+            },
+            {
+              "name": "chain_operations",
+              "line_start": 955,
+              "args_count": 2
+            },
+            {
+              "name": "memory_efficient_filter_map",
+              "line_start": 976,
+              "args_count": 3
+            }
+          ],
+          "line_start": 882,
+          "docstring": "生成器表達式優化器 - 將列表推導式轉換為生成器表達式\n\n使用場景：\n- 大資料處理和串流處理\n- 只需處理部分結果的場景\n- 記憶體受限的環境\n- 鏈式操作和延遲求值\n\n基於 018_generator_expression_optimization 藍圖研究：\n- 生成器表達式可實現661x的記憶體效率提升\n- 適用於大資料串流處理\n- 零額外記憶體開銷"
+        },
+        {
+          "name": "PythonForLoopOptimizer",
+          "methods": [
+            {
+              "name": "adaptive_vectorization",
+              "line_start": 1011,
+              "args_count": 2
+            },
+            {
+              "name": "_process_small_data",
+              "line_start": 1037,
+              "args_count": 1
+            },
+            {
+              "name": "_process_large_data",
+              "line_start": 1046,
+              "args_count": 1
+            },
+            {
+              "name": "optimize_scientific_computation",
+              "line_start": 1061,
+              "args_count": 2
+            },
+            {
+              "name": "_scientific_computation_listcomp",
+              "line_start": 1078,
+              "args_count": 2
+            },
+            {
+              "name": "_scientific_computation_numpy",
+              "line_start": 1096,
+              "args_count": 2
+            }
+          ],
+          "line_start": 993,
+          "docstring": "Python for迴圈優化器 - 規模自適應的向量化優化\n\n使用場景：\n- 多規模數值運算\n- 複雜條件處理\n- 科學計算和資料分析\n- 根據資料規模自動選擇最佳策略\n\n基於 python_for_loop 藍圖研究：\n- 小資料(<1K)：列表推導式最優\n- 中資料(1K-10K)：NumPy向量化轉折點\n- 大資料(>10K)：NumPy向量化極限優勢\n- 效能提升：2.8x (Perflint優化後)"
+        },
+        {
+          "name": "ExtendedDataProcessingOptimizer",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 1130,
+              "args_count": 1
+            },
+            {
+              "name": "build_category_index",
+              "line_start": 1133,
+              "args_count": 2
+            },
+            {
+              "name": "top_k_by_priority",
+              "line_start": 1146,
+              "args_count": 5
+            },
+            {
+              "name": "_calculate_score",
+              "line_start": 1189,
+              "args_count": 1
+            },
+            {
+              "name": "batch_top_k_queries",
+              "line_start": 1197,
+              "args_count": 2
+            },
+            {
+              "name": "optimize_data_structure",
+              "line_start": 1223,
+              "args_count": 1
+            }
+          ],
+          "line_start": 1113,
+          "docstring": "擴展資料處理優化器 - 堆排序與索引優化\n\n使用場景：\n- 大規模資料查詢與Top-K排序\n- 多類別優先級篩選\n- 高效Top-N結果提取\n- 結構化資料的高效能處理\n\n基於 019_EXTENDED_DATA_PROCESSING 藍圖研究：\n- 堆排序優化：避免完整排序\n- 預索引技術：O(1)查找優化\n- Top-K查詢：8.6x效能提升\n- 適用於200萬筆結構化記錄處理"
+        },
+        {
+          "name": "FrequencyOptimizationOptimizer",
+          "methods": [
+            {
+              "name": "optimize_loop_invariants",
+              "line_start": 1267,
+              "args_count": 2
+            },
+            {
+              "name": "eliminate_io_operations",
+              "line_start": 1305,
+              "args_count": 2
+            },
+            {
+              "name": "optimize_builtin_calls",
+              "line_start": 1337,
+              "args_count": 2
+            },
+            {
+              "name": "create_perflint_optimized_processor",
+              "line_start": 1376,
+              "args_count": 1
+            },
+            {
+              "name": "benchmark_frequency_impact",
+              "line_start": 1418,
+              "args_count": 2
+            }
+          ],
+          "line_start": 1248,
+          "docstring": "高頻調用優化器 - 消除累積效能損失\n\n使用場景：\n- 大規模數據處理中的頻繁函數調用\n- 循環中的重複計算和I/O操作\n- 高頻內建函數調用的效能優化\n- Perflint最佳實踐的自動化應用\n\n基於 o1_frequency_optimization_template 藍圖研究：\n- 循環不變量預先計算：避免重複len()調用\n- 預分配優化：避免append()頻繁重分配\n- I/O消除：移除print()等阻塞操作\n- 數學替代：避免str()轉換的開銷\n- 效能提升：2.1x (Perflint優化後)"
+        },
+        {
+          "name": "O1ComprehensionFormulaOptimizer",
+          "methods": [
+            {
+              "name": "optimize_range_with_conditions",
+              "line_start": 1461,
+              "args_count": 5
+            },
+            {
+              "name": "mathematical_range_filter",
+              "line_start": 1494,
+              "args_count": 2
+            },
+            {
+              "name": "precompute_mathematical_patterns",
+              "line_start": 1520,
+              "args_count": 2
+            }
+          ],
+          "line_start": 1444,
+          "docstring": "O(1) 列表推導式公式優化器 - 使用數學公式預計算\n\n使用場景：\n- 對規則序列進行複雜條件過濾\n- 涉及數學運算的列表推導式\n- 大規模數據的條件篩選\n- 數學範圍計算優化\n\n基於 o1_comprehension_formula_template 藍圖研究：\n- 將複雜條件檢查轉換為數學範圍計算\n- 預計算所有可能的結果模式\n- 效能提升：10-50x (基於條件複雜度)"
+        },
+        {
+          "name": "O1MathematicalFormulaOptimizer",
+          "methods": [
+            {
+              "name": "generate_multiples_in_range",
+              "line_start": 1561,
+              "args_count": 4
+            },
+            {
+              "name": "mathematical_sequence_transform",
+              "line_start": 1585,
+              "args_count": 3
+            },
+            {
+              "name": "optimize_arithmetic_progression",
+              "line_start": 1614,
+              "args_count": 4
+            }
+          ],
+          "line_start": 1544,
+          "docstring": "O(1) 數學公式替換優化器 - 純數學公式替換迭代器\n\n使用場景：\n- 對規則序列進行數學運算的過濾\n- 範圍序列的倍數運算\n- 數學序列生成和轉換\n- 大規模規則數據處理\n\n基於 o1_mathematical_formula_template 藍圖研究：\n- 將迭代器鏈結過濾轉換為數學公式\n- 直接計算結果序列而非逐元素檢查\n- 效能提升：15-25x (大規模數據測試)"
+        },
+        {
+          "name": "O1SetIntersectionOptimizer",
+          "methods": [
+            {
+              "name": "find_intersection_optimized",
+              "line_start": 1654,
+              "args_count": 1
+            },
+            {
+              "name": "multi_list_membership_test",
+              "line_start": 1677,
+              "args_count": 2
+            },
+            {
+              "name": "optimize_nested_lookup",
+              "line_start": 1700,
+              "args_count": 3
+            },
+            {
+              "name": "create_intersection_cache",
+              "line_start": 1729,
+              "args_count": 1
+            }
+          ],
+          "line_start": 1636,
+          "docstring": "O(1) 集合交集優化器 - 攤提複雜度的集合運算\n\n使用場景：\n- 多個大型列表的交集運算\n- 巢狀迴圈中的重複查找\n- 大規模數據的集合操作\n- 效能關鍵路徑中的成員測試\n\n基於 o1_set_intersection_template 藍圖研究：\n- 將O(N²)巢狀查找轉換為攤提O(1)\n- 使用Python內建集合交集運算\n- 自動優化：迭代最小集合，在其他集合中O(1)查找\n- 效能提升：100-500x (大規模數據測試)"
+        },
+        {
+          "name": "LookupAccelerator",
+          "methods": [
+            {
+              "name": "__init__",
+              "line_start": 1765,
+              "args_count": 1
+            },
+            {
+              "name": "create_lookup_set",
+              "line_start": 1768,
+              "args_count": 3
+            },
+            {
+              "name": "batch_membership_test",
+              "line_start": 1786,
+              "args_count": 5
+            },
+            {
+              "name": "filter_by_membership",
+              "line_start": 1807,
+              "args_count": 5
+            },
+            {
+              "name": "optimize_frequent_lookups",
+              "line_start": 1828,
+              "args_count": 4
+            },
+            {
+              "name": "convert_list_to_set_lookup",
+              "line_start": 1849,
+              "args_count": 1
+            },
+            {
+              "name": "clear_cache",
+              "line_start": 1863,
+              "args_count": 2
+            }
+          ],
+          "line_start": 1748,
+          "docstring": "O(1) 查找加速器 - 將線性查找轉換為雜湊查找\n\n使用場景：\n- 頻繁的列表成員測試\n- 大規模數據的查找操作\n- 批次查找優化\n- 重複查找的效能關鍵路徑\n\n基於 lookup_accelerator 藍圖研究：\n- 一次性將列表轉換為集合 O(n)\n- 後續查找變為 O(1) 雜湊查找\n- 自動優化：檢測重複查找模式\n- 效能提升：61.8x (大規模數據測試)"
+        },
+        {
+          "name": "LoopLookupOptimizer",
+          "methods": [
+            {
+              "name": "nested_loop_optimization",
+              "line_start": 1887,
+              "args_count": 3
+            }
+          ],
+          "line_start": 1876,
+          "docstring": "迴圈查找優化器 - 巢狀迴圈中的查找優化\n\n使用場景：\n- 巢狀迴圈中的列表查找\n- 多重條件檢查\n- 大規模資料的交集運算"
+        },
+        {
+          "name": "HighFreqCallsOptimizer",
+          "methods": [
+            {
+              "name": "precompute_loop_invariants",
+              "line_start": 1918,
+              "args_count": 1
+            },
+            {
+              "name": "eliminate_frequent_calls",
+              "line_start": 1935,
+              "args_count": 2
+            }
+          ],
+          "line_start": 1907,
+          "docstring": "高頻調用優化器 - 優化頻繁的函數調用\n\n使用場景：\n- 迴圈中的高頻內建函數調用\n- 重複的物件創建\n- 頻繁的屬性存取"
+        }
+      ],
+      "functions": [
+        {
+          "name": "quick_optimization_demo",
+          "line_start": 329,
+          "args_count": 0,
+          "docstring": "快速優化示範"
+        }
+      ],
+      "imports": {
+        "standard_library": [
+          "typing",
+          "collections",
+          "json",
+          "os",
+          "typing",
+          "time",
+          "os",
+          "time",
+          "time"
+        ],
+        "third_party": [
+          "functools",
+          "numpy",
+          "itertools",
+          "heapq"
+        ],
+        "local_imports": [],
+        "relative_imports": []
+      },
+      "complexity_score": 185
+    }
+  },
+  "dependency_issues": {
+    "missing_imports": [
+      {
+        "file": "tck_main.py",
+        "module": "tck_core.code_repository",
+        "line": 63
+      },
+      {
+        "file": "tck_main.py",
+        "module": "tck_core.frequency_analyzer",
+        "line": 64
+      },
+      {
+        "file": "tck_main.py",
+        "module": "tck_core.complexity_calculator",
+        "line": 65
+      },
+      {
+        "file": "tck_main.py",
+        "module": "tck_core.report_generator",
+        "line": 66
+      },
+      {
+        "file": "tck_main.py",
+        "module": "tck_core.similarity_detector",
+        "line": 258
+      }
+    ],
+    "circular_imports": [],
+    "unused_imports": []
+  },
+  "duplicates": [
+    {
+      "type": "function",
+      "name": "main",
+      "files": [
+        "mcp_server.py",
+        "tck_enhanced_analyzer.py"
+      ],
+      "suggestion": "考慮合併或重命名函數 'main'"
+    },
+    {
+      "type": "function",
+      "name": "main",
+      "files": [
+        "mcp_server.py",
+        "tck_main.py"
+      ],
+      "suggestion": "考慮合併或重命名函數 'main'"
+    }
+  ],
+  "timestamp": "2025-10-04T19:33:39.553923"
+}

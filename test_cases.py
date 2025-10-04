@@ -20,7 +20,7 @@ import statistics
 import math
 
 # 引用擴展測試案例檔案
-from test_case2 import TestCase19_ExtendedDataProcessing, TestCase20_FunctionCallOverheadOptimization
+from test_case2 import TestCase19_ExtendedDataProcessing, TestCase20_FunctionCallOverheadOptimization, TestCase21_NovaSourceMarkdownOptimization
 
 class TestCase1_ListLookup:
     """測試案例 1: LIST_LOOKUP 優化"""
@@ -1019,7 +1019,8 @@ TEST_CASES = [
     TestCase15_IteratorChainingSuperOptimization, # 新增：迭代器鏈結超級優化
     TestCase18_GeneratorExpressionOptimization, # 新增：生成器表達式優化
     TestCase19_ExtendedDataProcessing, # 新增：擴展資料處理優化
-    TestCase20_FunctionCallOverheadOptimization # 新增：函數調用開銷優化
+    TestCase20_FunctionCallOverheadOptimization, # 新增：函數調用開銷優化
+    TestCase21_NovaSourceMarkdownOptimization # 新增：Nova-Source Markdown 處理優化
 ]
 
 # 📊 效能最佳化：O(1) 名稱查找字典 (基於 list_lookup_accelerator.md)

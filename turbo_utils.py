@@ -11,7 +11,7 @@ Version: 2.0
 """
 
 from functools import lru_cache
-from typing import Dict, List, Any, Callable, Iterator, Iterable, Tuple, Optional, Set, Optional, Callable
+from typing import Dict, List, Any, Iterator, Iterable, Tuple, Set, Optional, Callable, Generator, Union
 import numpy as np
 from collections import defaultdict, deque
 import json
@@ -510,7 +510,6 @@ class DequeOperationsOptimizer:
     """
 
     def __init__(self):
-        from collections import deque
         self.deque = deque()
 
     def append_left_optimized(self, item: Any) -> None:
@@ -953,7 +952,7 @@ class GeneratorExpressionOptimizer:
         return results
 
     @staticmethod
-    def chain_operations(data: Iterable[Any], operations: List[Callable[[Any], Any]]) -> Generator[Any, None, None]:
+    def chain_operations(data: Iterable[Any], operations: List[Callable[[Any], Any]]) -> Iterator[Any]:
         """
         使用生成器鏈式應用多個操作
 
@@ -968,10 +967,10 @@ class GeneratorExpressionOptimizer:
             operations = [lambda x: x*2, lambda x: x+1, lambda x: x**2]
             result = chain_operations(data, operations)
         """
-        result = data
+        current_iter: Iterator[Any] = iter(data)
         for op in operations:
-            result = (op(item) for item in result)
-        return result
+            current_iter = (op(item) for item in current_iter)
+        return current_iter
 
     @staticmethod
     def memory_efficient_filter_map(data: Iterable[Any],
@@ -1138,7 +1137,6 @@ class ExtendedDataProcessingOptimizer:
         Args:
             data: 結構化資料列表
         """
-        from collections import defaultdict
         self.indexes['category'] = defaultdict(list)
 
         for item in data:
