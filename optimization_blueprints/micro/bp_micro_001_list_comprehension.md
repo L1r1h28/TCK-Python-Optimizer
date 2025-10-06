@@ -1,6 +1,6 @@
 # 微模式藍圖 001：列表推導式 vs. For 迴圈
 
-> **實現案例檔案**: `cases/micro/case_micro_001_list_comprehension.py`  
+> **實現案例檔案**: `cases/micro/case_micro_001_list_comprehension.py`
 > **核心洞察**: 列表推導式在 C 層級進行了高度優化，其效能遠超於在 Python `for` 迴圈中重複呼叫 `.append()`。對於任何基於現有可迭代對象建立新列表的任務，應**始終優先使用列表推導式**。
 
 ## 🎯 優化目標與效能對比
@@ -50,12 +50,17 @@ def optimized_version_comprehension(source_data):
 def optimized_version_itertools(source_data):
     import itertools
     import operator
-    
-    # 建立布林遮罩：True for 偶數, False for 奇數
+
+# 建立布林遮罩：True for 偶數, False for 奇數
+
     mask = itertools.cycle([True, False])
-    # 壓縮資料，只保留偶數
+
+# 壓縮資料，只保留偶數
+
     compressed_data = itertools.compress(source_data, mask)
-    # 使用 starmap 進行乘法運算
+
+# 使用 starmap 進行乘法運算
+
     result_iter = itertools.starmap(operator.mul, zip(compressed_data, itertools.repeat(2)))
     return list(result_iter)
 ```
@@ -139,11 +144,11 @@ def optimized_version_operator(source_data):
 ```python
 def optimized_version_numba_jit(source_data):
     from numba import jit
-    
+
     @jit(nopython=True)
     def numba_comprehension(data):
         return [x * 2 for x in data if x % 2 == 0]
-    
+
     return numba_comprehension(source_data)
 ```
 
@@ -161,7 +166,7 @@ def optimized_version_numba_jit(source_data):
 ```python
 def optimized_version_numba_parallel(source_data):
     from numba import njit, prange
-    
+
     @njit(parallel=True, fastmath=True)
     def numba_parallel(data):
         n = len(data)
@@ -170,7 +175,7 @@ def optimized_version_numba_parallel(source_data):
             if data[i] % 2 == 0:
                 result.append(data[i] * 2)
         return result
-    
+
     return numba_parallel(source_data)
 ```
 
@@ -189,7 +194,7 @@ def optimized_version_numba_parallel(source_data):
 def optimized_version_numexpr(source_data):
     import numexpr as ne
     import numpy as np
-    
+
     arr = np.array(source_data)
     mask = ne.evaluate("arr % 2 == 0")
     filtered = arr[mask]
@@ -212,7 +217,7 @@ def optimized_version_numexpr(source_data):
 def optimized_version_numba_typed_list(source_data):
     from numba import njit
     from numba.typed import List
-    
+
     @njit
     def numba_typed_list(data):
         result = List()
@@ -220,7 +225,7 @@ def optimized_version_numba_typed_list(source_data):
             if x % 2 == 0:
                 result.append(x * 2)
         return result
-    
+
     return list(numba_typed_list(source_data))
 ```
 

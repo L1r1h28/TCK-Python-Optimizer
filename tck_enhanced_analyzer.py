@@ -88,10 +88,35 @@ class TCKEnhancedAnalyzer:
             raw_metrics = analyze_raw(source_code)  # type: ignore
             sloc = raw_metrics.sloc
 
+            # 4. 依賴套件數量分析
+            import re
+            import_lines = re.findall(r'^\s*(?:import|from)\s+(\w+)', source_code, re.MULTILINE)
+            # 過濾標準庫和常見內建模組
+            standard_libs = {
+                'os', 'sys', 're', 'math', 'time', 'datetime', 'json', 'collections',
+                'itertools', 'functools', 'operator', 'pathlib', 'typing', 'inspect',
+                'gc', 'platform', 'threading', 'multiprocessing', 'subprocess'
+            }
+            external_deps = [imp for imp in import_lines if imp not in standard_libs]
+            dependency_count = len(set(external_deps))  # 去重
+
+            # 5. 技術棧複雜度分析
+            tech_indicators = {
+                'numpy': 2, 'numba': 3, 'pandas': 2, 'scipy': 2,
+                'torch': 3, 'tensorflow': 3, 'jax': 3, 'cython': 3,
+                'multiprocessing': 2, 'concurrent': 2, 'asyncio': 2
+            }
+            tech_complexity = 1  # 預設純 Python
+            for dep in external_deps:
+                if dep in tech_indicators:
+                    tech_complexity = max(tech_complexity, tech_indicators[dep])
+
             return {
                 "圈複雜度": complexity,
                 "可維護性指數": maintainability_index,
                 "程式碼行數": sloc,
+                "依賴套件數量": dependency_count,
+                "技術棧複雜度": tech_complexity,
             }
         except Exception as e:
             return {
@@ -214,16 +239,36 @@ class TCKEnhancedAnalyzer:
         # 準備測試資料
         test_data = case_data["setup_data"]()
 
-        # 1. 執行未優化版本作為基準
+        # 1. 執行未優化版本作為基準 (重複測試以獲取統計可靠性)
         print("❌ 測試基準版本 (unoptimized)...")
         unoptimized_func = case_data["unoptimized"]
-        baseline_results = self.measure_comprehensive_performance(
-            unoptimized_func, *test_data
-        )
+        baseline_results_list = []
+        for i in range(3):  # 重複 3 次
+            result = self.measure_comprehensive_performance(
+                unoptimized_func, *test_data
+            )
+            if result["成功"]:
+                baseline_results_list.append(result)
+            if len(baseline_results_list) >= 2:  # 至少 2 次成功
+                break
 
-        if not baseline_results["成功"]:
-            print(f"❌ 基準版本執行失敗: {baseline_results['錯誤訊息']}")
+        if not baseline_results_list:
+            print("❌ 基準版本執行失敗")
             return None
+
+        # 計算統計：中位數和 IQR
+        import statistics
+        times = [r["純執行時間_秒"] for r in baseline_results_list]
+        baseline_median_time = statistics.median(times)
+        if len(times) > 1:
+            baseline_iqr = statistics.quantiles(times, n=4)[2] - statistics.quantiles(times, n=4)[0]
+        else:
+            baseline_iqr = 0
+
+        # 使用中位數作為基準
+        baseline_results = baseline_results_list[0].copy()
+        baseline_results["純執行時間_秒"] = baseline_median_time
+        baseline_results["IQR_秒"] = baseline_iqr
 
         unoptimized_source = inspect.getsource(unoptimized_func)
         unoptimized_quality = self._analyze_code_quality(unoptimized_source)
@@ -251,15 +296,32 @@ class TCKEnhancedAnalyzer:
         for version_name, optimized_func in optimized_versions.items():
             print(f"✅ 測試優化版本: {version_name}...")
 
-            optimized_results = self.measure_comprehensive_performance(
-                optimized_func, *test_data
-            )
-
-            if not optimized_results["成功"]:
-                print(
-                    f"⚠️  優化版本 {version_name} 執行失敗: {optimized_results['錯誤訊息']}"
+            # 重複測試優化版本
+            optimized_results_list = []
+            for i in range(3):
+                result = self.measure_comprehensive_performance(
+                    optimized_func, *test_data
                 )
+                if result["成功"]:
+                    optimized_results_list.append(result)
+                if len(optimized_results_list) >= 2:
+                    break
+
+            if not optimized_results_list:
+                print(f"⚠️  優化版本 {version_name} 執行失敗")
                 continue
+
+            # 計算統計
+            times = [r["純執行時間_秒"] for r in optimized_results_list]
+            optimized_median_time = statistics.median(times)
+            if len(times) > 1:
+                optimized_iqr = statistics.quantiles(times, n=4)[2] - statistics.quantiles(times, n=4)[0]
+            else:
+                optimized_iqr = 0
+
+            optimized_results = optimized_results_list[0].copy()
+            optimized_results["純執行時間_秒"] = optimized_median_time
+            optimized_results["IQR_秒"] = optimized_iqr
 
             # 計算與基準的比較指標
             comparison_metrics = self._compare_metrics(
@@ -271,10 +333,11 @@ class TCKEnhancedAnalyzer:
             optimized_quality = self._analyze_code_quality(optimized_source)
 
             performance_scores = self._calculate_performance_score(
-                comparison_metrics, optimized_quality
+                comparison_metrics, optimized_quality, unoptimized_quality
             )
             total_score = performance_scores["總體效能評分"]
-            grade = self._get_performance_grade(total_score)
+            practicality_score = performance_scores.get("實用性評分", 0)
+            grade = self._get_performance_grade(total_score, practicality_score)
 
             all_versions_results[version_name] = {
                 "metrics": optimized_results,
@@ -446,6 +509,11 @@ class TCKEnhancedAnalyzer:
         time_improvement = self._safe_divide(baseline_time, optimized_time)
         cpu_improvement = self._safe_divide(baseline_cpu, optimized_cpu)
 
+        # 加入絕對時間改善檢查：至少節省 0.01 秒才有意義
+        absolute_time_saving = baseline_time - optimized_time
+        if absolute_time_saving < 0.01 and baseline_time > 0.1:  # 對於慢函數
+            time_improvement *= 0.5  # 懲罰邊際絕對改善
+
         # 優化2: 使用 get() 和嵌套字典安全訪問，避免重複字典查詢
         opt_after = optimized.get("執行後統計", {})
         opt_before = optimized.get("執行前統計", {})
@@ -496,12 +564,15 @@ class TCKEnhancedAnalyzer:
         return numerator / denominator
 
     def _calculate_performance_score(
-        self, metrics: Dict[str, Any], quality_metrics: Dict[str, Any]
+        self, metrics: Dict[str, Any], quality_metrics: Dict[str, Any], baseline_quality: Optional[Dict[str, Any]] = None
     ) -> Dict[str, float]:
         """計算效能評分 (0-100 分)，包含程式碼品質 - 使用TCK最佳化技術：映射表和批次計算"""
 
         # TCK 優化：預定義評分計算函數，避免多重條件判斷
         def calculate_time_score(improvement: float) -> float:
+            # 加入最小顯著改善門檻：小於1.5x的改善視為邊際效益不足
+            if improvement < 1.5:
+                return max(0.0, improvement * 20)  # 顯著降低分數
             if improvement >= 50:
                 return 100.0
             elif improvement >= 10:
@@ -560,6 +631,7 @@ class TCKEnhancedAnalyzer:
 
         # 程式碼品質評分計算 - 使用 TCK 安全字典存取
         quality_score = 0.0
+        practicality_score = 0.0
         if quality_metrics and "錯誤" not in quality_metrics:
             # TCK 優化：使用映射表避免多重條件判斷
             complexity_thresholds = [(5, 100), (10, 80), (20, 60)]
@@ -583,36 +655,103 @@ class TCKEnhancedAnalyzer:
                 30,
             )
 
+            # 新增實用性指標
+            dependency_count = quality_metrics.get("依賴套件數量", 0)
+            tech_stack_complexity = quality_metrics.get("技術棧複雜度", 1)
+            complexity_ratio = 1.0
+            if baseline_quality:
+                baseline_sloc = baseline_quality.get("程式碼行數", 1)
+                optimized_sloc = quality_metrics.get("程式碼行數", 1)
+                complexity_ratio = optimized_sloc / baseline_sloc if baseline_sloc > 0 else 1.0
+
+            # 依賴數量評分：越少越好
+            if dependency_count == 0:
+                dep_score = 100
+            elif dependency_count <= 2:
+                dep_score = 80
+            elif dependency_count <= 5:
+                dep_score = 60
+            else:
+                dep_score = max(20, 60 - (dependency_count - 5) * 10)
+
+            # 技術棧複雜度評分：1=純Python, 2=NumPy, 3=Numba等
+            if tech_stack_complexity == 1:
+                tech_score = 100
+            elif tech_stack_complexity == 2:
+                tech_score = 80
+            elif tech_stack_complexity == 3:
+                tech_score = 60
+            else:
+                tech_score = max(20, 60 - (tech_stack_complexity - 3) * 20)
+
+            # 複雜度倍數評分：優化行數/原始行數，越接近1越好
+            if complexity_ratio <= 1.2:
+                ratio_score = 100
+            elif complexity_ratio <= 2.0:
+                ratio_score = 80
+            elif complexity_ratio <= 5.0:
+                ratio_score = 60
+            else:
+                ratio_score = max(20, 60 - (complexity_ratio - 5) * 5)
+
             # TCK 優化：預計算權重，單次計算
-            quality_score = mi_score * 0.5 + cc_score * 0.3 + sloc_score * 0.2
+            quality_score = mi_score * 0.4 + cc_score * 0.3 + sloc_score * 0.3
+            # 技術棧壽命評分：考慮長期維護成本
+            # Numba/Torch 等複雜技術可能有相容性問題，給低分
+            tech_lifetime_score = 100
+            if tech_stack_complexity >= 3:
+                tech_lifetime_score = 60  # 複雜技術長期維護成本高
+            elif tech_stack_complexity == 2:
+                tech_lifetime_score = 80
+
+            practicality_score = dep_score * 0.3 + tech_score * 0.3 + ratio_score * 0.2 + tech_lifetime_score * 0.2
 
         scores["程式碼品質評分"] = quality_score
+        scores["實用性評分"] = practicality_score
 
         # TCK 優化：預定義權重字典，使用生成器表達式計算總分
+        # 調整權重：減少效能權重，增加品質與實用性權重以平衡實用性
         weights = {
-            "時間改善評分": 0.40,
-            "CPU效率評分": 0.25,
-            "記憶體效率評分": 0.15,
+            "時間改善評分": 0.25,  # 進一步降至 0.25
+            "CPU效率評分": 0.15,  # 降至 0.15
+            "記憶體效率評分": 0.10,  # 降至 0.10
             "IO效率評分": 0.05,
-            "程式碼品質評分": 0.15,
+            "程式碼品質評分": 0.20,  # 降至 0.20
+            "實用性評分": 0.25,  # 新增實用性評分
         }
         scores["總體效能評分"] = sum(
             scores[key] * weight for key, weight in weights.items()
         )
 
+        # 正確性懲罰：如果結果不正確，總分減半
+        correctness = metrics.get("正確性", True)
+        if not correctness:
+            scores["總體效能評分"] *= 0.5
+            scores["正確性懲罰"] = True
+
         return scores
 
-    def _get_performance_grade(self, score: float) -> str:
-        """根據評分獲得等級 - 使用TCK最佳化技術：映射表查找"""
-        # TCK 優化：使用元組映射表，O(1) 查找替代多重條件判斷
-        grade_thresholds = (
-            (95, "A+ (卓越)"),
-            (85, "A (優秀)"),
-            (75, "B+ (良好)"),
-            (65, "B (中等)"),
-            (55, "C+ (合格)"),
-            (45, "C (勉強通過)"),
-        )
+    def _get_performance_grade(self, score: float, practicality_score: float = 0) -> str:
+        """根據評分獲得等級 - 考慮實用性權衡"""
+        # 調整門檻：提高 A級要求，加入實用性懲罰
+        if practicality_score < 60:  # 實用性差，降級
+            grade_thresholds = (
+                (98, "A+ (卓越)"),
+                (90, "A (優秀)"),
+                (80, "B+ (良好)"),
+                (70, "B (中等)"),
+                (60, "C+ (合格)"),
+                (50, "C (勉強通過)"),
+            )
+        else:  # 實用性好，正常門檻
+            grade_thresholds = (
+                (95, "A+ (卓越)"),
+                (85, "A (優秀)"),
+                (75, "B+ (良好)"),
+                (65, "B (中等)"),
+                (55, "C+ (合格)"),
+                (45, "C (勉強通過)"),
+            )
 
         return next(
             (grade for threshold, grade in grade_thresholds if score >= threshold),
@@ -803,6 +942,8 @@ class TCKEnhancedAnalyzer:
             result = self.run_test_case(name)
             if result:
                 all_results.append(result)
+                # 為每個測試案例生成詳細報告
+                self.generate_detailed_report(result)
 
         self.generate_summary_report(all_results)
 

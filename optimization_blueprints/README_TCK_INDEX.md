@@ -1,97 +1,152 @@
-# 📚 TCK 優化藍圖總索引
+## 📚 TCK 優化藍圖總索引
 
-## � 完整案例效能表格 (21 項)
+## � 完整案例效能表格 (28 項)
 
 | 案例 | 藍圖檔案 | 優化目標 | 等級 | 加速倍率 | 適用場景 |
 |------|----------|----------|------|----------|----------|
-| 001 | `blueprint_001_list_lookup.md` | O(n)→O(1) 查找 | **B+級** | **61.8x** | 列表頻繁查找 |
-| 002 | `blueprint_002_python_for_loop_vectorization.md` | 迴圈→向量化 | **B級** | **2.8x** | 規模自適應優化 |
-| 003 | `blueprint_003_config_load.md` | I/O→記憶體快取 | **A級** | **28.1x** | 設定檔重複載入 |
-| 004 | `blueprint_004_string_concatenation.md` | O(n²)→O(n) 字串拼接 | **B+級** | **14.4x** | 文字格式化 |
-| 005 | [字典查詢異常處理開銷分析](blueprint_005_dictionary_lookup.md) | B+ (良好) | 1.7x | 基於 DeepWiki 異常處理研究 | ✅ |
-| 006 | `blueprint_006_set_operations.md` | O(n²)→O(n) 集合運算 | **B級** | **37.7x** | 交集/聯集/差集 |
-| 007 | `blueprint_007_deque_operations.md` | O(n)→O(1) 頭部操作 | **A級** | **140.8x** | 雙端佇列 |
-| 008 | `blueprint_008_memorization_cache.md` | 重複計算→快取 | **A級** | **2803.3x** | 遞歸、重計算 |
-| 009 | `blueprint_009_builtin_functions.md` | Python→C 內建函數 | **B+級** | **1.9x** | 數值統計運算 |
-| 010 | [推導式效能瓶頸科學分析](blueprint_010_comprehension_bottleneck_analysis.md) | C+ (合格) | 1.1-7.6x | 基於 DeepWiki 研究的科學分析 | ✅ |
-| 011 | `blueprint_011_iterator_chaining_combined.md` | 記憶體節省 + O(1)數學公式 | **B級** | **18.3x** | 大序列合併 |
-| 012 | `blueprint_012_data_class_optimization.md` | O(N)→O(1) 向量化 | **B+級** | **16.7x** | 大規模物件處理 |
-| 013 | `blueprint_013_loop_lookup_combined.md` | O(n²)→攤提O(1) 迴圈查找 | **A+級** | **221.0x** | 大規模數據集合交集 |
-| 014 | `blueprint_014_loop_lookup_super_optimization.md` | 集合交集替換範本 | **A+級** | **300x+** | 巢狀迴圈優化 |
-| 015 | `blueprint_015_iterator_chaining_super_optimization.md` | 數學公式替換範本 | **A級** | **100x+** | 迭代器鏈結優化 |
-| 016 | `blueprint_016_comprehension_optimization_super.md` | 推導式公式替換範本 | **A級** | **50x+** | 複雜條件列表推導 |
-| 017 | `blueprint_017_high_freq_calls_optimization.md` | 高頻調用優化 | **B級** | **2.1x** | 大規模數據處理 |
-| 018 | `blueprint_018_generator_expression_optimization.md` | 列表→生成器延遲求值 | **A+級** | **18539x** | 大資料串流部分結果 |
-| 019 | `blueprint_019_extended_data_processing.md` | 堆排序 + 預索引優化 | **B+級** | **8.6x** | Top-K 查詢、多條件篩選 |
-| 020 | `blueprint_020_function_call_overhead_optimization.md` | 函數調用開銷優化 | **B級** | **2.6x** | 效能關鍵路徑頻繁調用 |
-| 021 | `blueprint_021_nova_source_markdown_optimization.md` | 字串處理優化 | **B級** | **1.7x** | Markdown 文件處理 |
+| 001 | `blueprint_001_list_lookup.md` | O(n)→O(1) 查找 | ### A級 | ### 524.8x | 列表頻繁查找 |
+| 002 | `blueprint_002_python_for_loop_vectorization.md` | 迴圈→向量化 | ### B+級 | ### 4.3x | 規模自適應優化 |
+| 003 | `blueprint_003_config_load.md` | I/O→記憶體快取 | ### B+級 | **59.6x** | 設定檔重複載入 |
+| 004 | `blueprint_004_string_concatenation.md` | O(n²)→O(n) 字串拼接 | ### B+級 | ### 13.1x | 文字格式化 |
+| 005 | [字典查詢異常處理開銷分析](blueprint_005_dictionary_lookup.md) | B+級 | 1.6x | 基於 DeepWiki 異常處理研究 | ✅ |
+| 006 | `blueprint_006_set_operations.md` | O(n²)→O(n) 集合運算 | ### A+級 | ### 59.5x | 交集/聯集/差集 |
+| 007 | `blueprint_007_deque_operations.md` | O(n)→O(1) 頭部操作 | ### B+級 | ### 41.7x | 雙端佇列 |
+| 008 | `blueprint_008_memorization_cache.md` | 重複計算→快取 | ### A+級 | ### 35470.5x | 遞歸、重計算 |
+| 009 | `blueprint_009_builtin_functions.md` | Python→C 內建函數 | ### A級 | ### 4.5x | 數值統計運算 |
+| 010 | [推導式效能瓶頸科學分析](blueprint_010_comprehension_bottleneck_analysis.md) | B+級 | 3.8x | 基於 DeepWiki 研究的科學分析 | ✅ |
+| 011 | `blueprint_011_iterator_chaining_combined.md` | 記憶體節省 + O(1)數學公式 | ### A+級 | ### 41007.9x | 大序列合併 |
+| 012 | `blueprint_012_data_class_optimization.md` | O(N)→O(1) 向量化 | ### B級 | ### 0.9x | 大規模物件處理 |
+| 013 | `blueprint_013_loop_lookup_combined.md` | O(n²)→攤提O(1) 迴圈查找 | ### A+級 | ### 776.5x | 大規模數據集合交集 |
+| 017 | `blueprint_017_high_freq_calls_optimization.md` | 高頻調用優化 | ### B級 | ### 1.6x | 大規模數據處理 |
+| 018 | `blueprint_018_generator_expression_optimization.md` | 列表→生成器延遲求值 | ### A級 | ### 12100.7x | 大資料串流部分結果 |
+| 019 | `blueprint_019_extended_data_processing.md` | 堆排序 + 預索引優化 | ### B級 | ### 4.2x | Top-K 查詢、多條件篩選 |
+| 020 | `blueprint_020_function_call_overhead_optimization.md` | 函數調用開銷優化 | ### B+級 | ### 2.1x | 效能關鍵路徑頻繁調用 |
+| 021 | `blueprint_021_nova_source_markdown_optimization.md` | 字串處理優化 | ### B+級 | ### 0.5x | Markdown 文件處理 |
+| 022 | 未啟用 | 網路 API 優化 | - | - | Web 應用、微服務 |
+| 023 | 未啟用 | 資料庫查詢優化 | - | - | 企業應用、資料分析 |
+| 024 | 未啟用 | 並行非同步處理 | - | - | 高並發服務、多核心利用 |
+| 025 | 未啟用 | 大檔案記憶體映射 | - | - | 大資料處理、日誌分析 |
+| 026 | 未啟用 | 序列化資料壓縮 | - | - | 快取儲存、網路傳輸 |
+| 027 | 未啟用 | 數值計算矩陣運算 | - | - | 科學計算、資料分析 |
+| 028 | 未啟用 | 編譯 JIT 優化 | - | - | 效能關鍵計算迴圈 |
 
 ## 📋 案例詳細描述
 
 ### 001 - 列表查找加速器
+
 將 O(n) 線性查找提升至 O(1) 雜湊查找，適用任何列表查找操作，成功率 100%。
 
-### 002 - Python For-Loop 向量化優化  
+### 002 - Python For-Loop 向量化優化
+
 根據 DeepWiki 和 Microsoft Doc 研究，實現規模自適應的 Python 迴圈向量化優化，小資料列表推導式最優，大資料 NumPy 向量化最優。
 
 ### 003 - 設定快取管理器
+
 消除重複檔案 I/O，實現一次載入多次使用，特別適用於應用程式設定檔的重複載入。
 
 ### 004 - 字串拼接優化器
+
 將 O(n²) 字串累加轉換為 O(n) join() 方法，適用於大量字串拼接、CSV 格式生成、HTML 生成等場景。
 
 ### 005 - 字典查找優化
+
 專注於消除雙重雜湊查找的開銷，但在現代 Python 字典實現下效果有限，不建議使用。
 
 ### 006 - 集合操作優化器
+
 將 O(n²) 列表交集/聯集轉換為 O(n) 集合運算，適用於資料清理、去除重複項目、快速篩選等場景。
 
 ### 007 - 雙端佇列操作優化器
+
 將 O(n) 列表頭部插入轉換為 O(1) deque 頭部操作，適用於佇列、堆疊、滑動視窗等場景。
 
 ### 008 - 記憶化快取優化器
+
 消除重複計算，實現攤提 O(1) 複雜度，特別適用於遞迴函數、重複計算、API 調用快取等場景。
 
 ### 009 - 內建函數優化器
+
 使用 Python→C 內建函數替代 Python 迴圈，適用於數值統計運算、簡單的過濾轉換等場景。
 
 ### 010 - 列表推導式優化器
+
 使用列表推導式替代傳統迴圈，但在小數據集上效果不明顯，需要謹慎使用。
 
 ### 011 - 迭代器鏈結優化器
+
 將 O(N) 的迭代遍歷轉換為 O(1) 的數學公式計算，適用於大序列合併、數學優化等場景。
 
 ### 012 - DataClass 優化器
+
 利用 NumPy 向量化進行 O(N)→O(1) 優化，適用於大規模物件處理、批量計算等場景。
 
 ### 013 - 迴圈查找優化器
+
 將巢狀迴圈中的 O(n²) 列表查找轉換為 O(n) 集合查找，適用於大規模數據集合交集優化。
 
 ### 014 - 集合交集替換範本
+
 O(1) 集合交集替換範本，將巢狀迴圈中的列表查找轉換為攤提 O(1) 集合交集，適用於巢狀迴圈優化。
 
 ### 015 - 數學公式替換範本
+
 O(1) 數學公式替換範本，將迭代器鏈結過濾轉換為純 O(1) 數學公式，適用於迭代器鏈結優化。
 
 ### 016 - 推導式公式替換範本
+
 O(1) Comprehension 優化範本，將複雜條件列表推導式轉換為數學公式預計算 O(1)，適用於複雜條件列表推導。
 
 ### 017 - 高頻調用優化
+
 基於 Perflint 最佳實踐整合，將高頻低效函數調用累積效能損失轉換為 O(1) 最佳化實作，適用於大規模數據處理。
 
 ### 018 - 生成器表達式優化
+
 將列表轉換為生成器延遲求值，實現巨大的記憶體效率提升，特別適用於大資料串流處理。
 
 ### 019 - 擴展資料處理優化
+
 堆排序 + 預索引 + Top-K 查詢優化，適用於大規模資料處理、Top-K 查詢、多條件篩選等場景。
 
 ### 020 - 函數調用開銷優化
+
 內聯展開、減少函數調用、效能關鍵路徑優化，適用於效能關鍵路徑中的頻繁函數調用。
 
 ### 021 - NOVA 源碼 Markdown 優化
+
 字串處理優化、正則表達式預編譯、條件檢查優化，適用於大規模 Markdown 文件處理和格式化。
+
+### 022 - 網路 API 優化器 (未啟用)
+
+HTTP 請求快取、非同步批次處理、連接池管理，適用於 Web 應用程式、微服務架構、API 客戶端優化。
+
+### 023 - 資料庫查詢優化器 (未啟用)
+
+ORM 優化、查詢批次處理、資料庫連接池，適用於 Django/Flask 應用、企業級資料庫操作、資料分析管道。
+
+### 024 - 並行非同步處理優化器 (未啟用)
+
+asyncio 模式、進程池、多執行緒 GIL 繞過，適用於 I/O 密集應用、高並發服務、多核心 CPU 利用。
+
+### 025 - 大檔案記憶體映射優化器 (未啟用)
+
+mmap 記憶體映射、流式檔案處理、並行 I/O，適用於大檔案分析、日誌處理、大資料預處理。
+
+### 026 - 序列化資料壓縮優化器 (未啟用)
+
+JSON/Pickle 優化、資料壓縮演算法、序列化格式選擇，適用於快取儲存、網路資料傳輸、持久化優化。
+
+### 027 - 數值計算矩陣運算優化器 (未啟用)
+
+NumPy/SciPy 進階用法、矩陣運算優化、向量化計算，適用於科學計算、資料分析、機器學習預處理。
+
+### 028 - 編譯 JIT 優化器 (未啟用)
+
+Numba JIT 編譯、Cython 擴展、原生碼加速，適用於效能關鍵的計算迴圈、數值運算密集場景。
 
 ---
 
-**測試環境**: Intel i5-11400F + RTX 2060 Super + 32GB RAM (Windows 11)  
-**分析工具**: TCK Enhanced Analyzer 統計分析系統
+### 測試環境: Intel i5-11400F + RTX 2060 Super + 32GB RAM (Windows 11)
+
+### 分析工具: TCK Enhanced Analyzer 統計分析系統
+

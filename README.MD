@@ -56,28 +56,30 @@ python tck_enhanced_analyzer.py --test STRING_CONCATENATION     # 7.0x 加速
 
 ```bash
 TurboCode Kit (TCK)/
-├── tck_core/
-│   ├── test_cases.py
-│   └── ... (核心分析引擎)
-├── cases/
-│   ├── case_001_...
-│   └── ... (21個獨立案例)
-├── optimization_blueprints/
-│   ├── README.md
-│   ├── README_TCK_INDEX.md
-│   └── ... (21個藍圖)
-├── tck_enhanced_analyzer.py
-├── tck_main.py
-└── README.md
+├── 📁 backup_old_tck/
+├── 📁 cases/
+│   ├── 📁 atomic/
+│   ├── 📁 micro/
+├── 📁 optimization_blueprints/
+│   ├── 📁 micro/
+├── 📁 tck_core/
+│   └── 🐍 test_cases.py
+├── 📁 test_reports/ 🚫 (auto-hidden)
+├── 📜 LICENSE.md
+├── 📖 README.MD
+├── 📝 README_EN.md
+├── 📄 requirements.txt
+├── 🐍 tck_enhanced_analyzer.py
+└── 📝 代辦事項.md
 ```
 
 | 檔案/目錄 | 🎯 說明 |
 | :--- | :--- |
-| `tck_main.py` | 主控制器 (完整分析流程) |
 | `tck_enhanced_analyzer.py` | 主要測試工具 (動態載入案例) |
 | `tck_core/` | 核心分析引擎與共用工具 |
 | `cases/` | 存放所有獨立的效能測試案例檔案 |
 | `optimization_blueprints/` | AI 協作藍圖與自動化流程說明 |
+| `backup_old_tck/` | 歷史備份：包含先前的 `tck_main.py` 與 `tck_core/` 等已移出的舊檔案 |
 
 ---
 
